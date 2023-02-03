@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        //BOM(브라우저 오브젝트 모델), DOM(도큐먼트 오브젝트 모델)
+        //내장객체, 내장함수 ==>  window객체, window함수
+        //자주사용되는 걸 window로 빼기도함 parseInt 등
+
+        // window//객체
+        // Window//객체를 찍기위한 함수(= 약속으로 첫글자 대문자)
+        // history//객체
+        // History//객체를 찍기위한 함수(= 약속으로 첫글자 대문자)
+
+        // 0. Window
+        //당분간만 쓰자 촌스럽다. -> 부트스트랩 모달
+        window.alert('dsfsdf'); 
+        window.confirm('확인하시겠습니까?');//return값 true false
+        window.prompt("메시지");//입력값 리턴, 취소:null
+        window.prompt("메시지","디폴트글자");
+
+        var a=window.open("http://google.com");//return이 window 객체(새창,탭이니까)
+        window.close();//안됨; 보안상 문제라 막아놈, 팝업도
+        a.close(); // 요건됨 내가 연건 제어할 수 있도록
+
+        var b=window.open("http://google.com",null,"width=200,heigth=300");
+        b.moveTo();//블락
+        b.moveBy();//블락
+
+        //이 값으로 반응형 웹 이사이즈면 이 css
+        console.log(window.innerWidth);
+        console.log(window.outerWidth);
+        console.log(window.innerHeight);
+        console.log(window.outerHeight);
+
+        //
+        window.console.log('aa');
+        window.console.error('aa');
+
+        // 1. location(주소)
+        window.location;
+        location.href="http://google.com";//페이지이동
+        console.log(location);//객체에는 키에 따른 value를 확인가능 value가 function이면 메서드
+        //
+        console.log(location.protocol);
+        console.log(location.host);
+        console.log(location.hostname);
+        console.log(location.port);
+        console.log(location.pathname);
+        console.log(location.search);//쿼리스트링
+
+
+        //메서드
+        //주소와 관련된것 : 주소창라인에 새로고침 버튼있음 = 라인에 있는 기능 모두 대상
+        location.reload();//새로고침 
+        location.replace("http://google.com");//페이지 이동
+
+        //페이지이동 2개
+        location.href="http://google.com";//히스토리 쌓임
+        location.replace("http://google.com");//히스토리 안쌓임
+        //로그인할때 구분: 뒤로가기하면 insert.jsp가 아니라 
+        //다른데로가게하려면 insert.jsp이동시 replace로 이동
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

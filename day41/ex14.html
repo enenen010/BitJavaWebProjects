@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--DOM LV1-->
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+        //DOM LV2
+        var input,div,btn;
+        var callback=function(e){
+            console.log(e.type,e.keyCode,e.key);
+            if(e.keyCode==39)
+                div.style.marginLeft=parseInt(div.style.marginLeft)+10+'px';
+            if(e.keyCode==37)
+                div.style.marginLeft=parseInt(div.style.marginLeft)-10+'px';
+            if(e.keyCode==38)
+                div.style.marginTop=parseInt(div.style.marginTop)+10+'px';
+            if(e.keyCode==40)
+                div.style.marginTop=parseInt(div.style.marginTop)-10+'px';
+                
+        }
+        window.onload=function(){
+            input=document.querySelector('input');
+            div=document.querySelector('div');
+            btn=document.querySelector('button');
+            
+            //키보드 V2
+            input.onkeydown=callback;
+            input.onkeyup=callback;
+            input.onkeypress=callback;
+            //up,down만 되는거: 쉬프트, 방향키 등 문자입력키 빼고 인듯
+
+            div.onkeydown=callback;//여기 붙여도 안됨 포커스가 못감
+            btn.onkeydown=callback;//한번 클릭하면 됨 포커스가 갈 수 있어서
+            document.onkeydown=callback;//처음 포커스는 여기임, 여기다 달아서 div를 움직여보자
+
+            div.style.marginLeft='0px';
+            div.style.marginTop='0px';
+
+            
+
+
+
+        }
+    </script>
+</head>
+<body>
+    <input/>
+</body>
+</html>

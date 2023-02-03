@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+        .container{
+            width: 600px;
+            margin: 0 auto;
+        }
+        .container>#menu{
+            background-color: gray;
+            overflow: hidden;
+        }
+        .container>#menu>ul{
+            padding: 0;
+            list-style: none;
+            width: 400px;
+            margin: 0 auto;
+        }
+        .container>#menu>ul>li{
+            float: left;
+            width: 100px;
+        }
+        .container>#menu>ul>li>a{
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            color:#fff;
+            text-decoration: none;
+        }
+        .container>#menu>ul>li>a:hover{
+            text-decoration: overline;
+        }
+
+        .carousel{
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .carousel>ul{
+            width: 600px;
+            height: 200px;
+            overflow: hidden;
+            list-style: none;
+            padding: 0;
+        }
+        .carousel>ul>li{
+            float: left;
+        }
+        .carousel>ul>li>img{
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+            <h1>헤더로고</h1>
+        </div>
+    </div>
+    <div id="menu">
+        <ul>
+            <li></li>
+        </ul>
+    </div>
+    <div id="content">
+        <div id="carousel">
+            <ul>
+                <li><img src="" alt=""></li>
+                <li><img src="" alt=""></li>
+                <li><img src="" alt=""></li>
+                <li><img src="" alt=""></li>
+                <li><img src="" alt=""></li>
+                <li><img src="" alt=""></li>
+            </ul>
+        </div>
+    </div>
+    <div id="footer">
+
+    <script type="text/javascript">
+        var carousel=document;
+        function callback(){
+            carousel.firstElementChild.appendChild();
+            setTimeout(callback,3000);
+        }
+        setTimeout(callback,3000);
+    </script>
+</body>
+</html>

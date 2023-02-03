@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <h2></h2>
+    <h2></h2>
+    <ul class="carousel">
+        <li>item1</li>
+        <li id="ksh">item2</li>
+        <li>item3</li>
+        <li>item4</li>
+        <li>item5</li>
+        <li>item6</li>
+    </ul>
+    <script type="text/javascript">
+        //내가 일을 덜하려면 브라우저에 일을 맏기자
+        var h1=document.getElementsByTagName('h1')[0];
+        var carousel=document.getElementsByClassName('carousel')[0];
+        var ksh=document.getElementById('ksh');
+        //조합
+        carousel.appendChild(carousel.firstElementChild);
+        h1.innerText='문자열변경'; //요것도 일시키는거 원랜 textnode생성해 append
+        carousel.innerText;//text요소만 뽑아옴 엘리먼트제외
+        carousel.innerHTML;//엘리먼트=태그까지 뽑아옴 \n까지
+
+        carousel.outerHTML;//<ul>까지 뽑아옴
+    </script>
+</body>
+</html>

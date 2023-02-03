@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--DOM LV1-->
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+        //웬만을 봤을때는 로드후 처리 빼곤 다 head로 올림
+        //DOM LV2                  다시말하지만 이벤트는 앞에 on이 붙는것이 특징
+        function myload(){
+            h1=document.getElementById('h1')[0];
+        };
+        //window LV2 이벤트
+        //호출 내가 안함 쟤가 알아서함 = callback
+        window.onload=myload;// 왠만하면 LV2가 나은데 onload에 한해 LV1이 나음
+        window.onbeforeunload;//로드 하기 전=페이지 이동 직전
+        window.onabort;//이동 취소
+        window.onerror;
+        window.onbeforeprint;
+        window.onresize;//크기변함 반응형 가능
+        window.onscroll=function(){//스크롤
+            if(window.innerHeight-200<window.pageYOffset){//요새는 스크롤하면 페이지가 바뀌는 세련된 시대
+                document.querySelector("body").innerHTML=
+                document.querySelector("body").innerHTML+"<br><br>";
+            }
+        }
+    </script>
+</head>
+<body onload="">
+    <h1>dom go</h1>
+</body>
+</html>

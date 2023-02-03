@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--DOM LV1-->
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript">
+        //DOM LV2
+        var input,btn,sel;
+        var callback=function(e){
+            console.log('이벤트 발생');
+        }
+        window.onload=function(){
+            input=document.querySelector('input');
+            btn=document.querySelector('button');
+            sel=document.querySelector('select');
+
+            //제이쿼리에선 뭐하나 더 있다고 함
+            input.onfocus=callback;//포커스 얻음
+            input.onblur=callback;//포커스 잃음
+
+            //이벤트 트리거 (앞에 on이 빠짐)
+            input.focus();//포커스 바로 얻음
+            input.blur();
+            btn.click();//바로 클릭
+            btn.focus();
+
+            //선택                    나중에 리액트가면 onchange->keypress느낌 onchange있는데 js랑 다른느낌
+            sel.onchange=callback; //상태변화시 
+            input.onchange=callback; //입력하고 엔터하면 
+        }
+    </script>
+</head>
+<body>
+    <input/>
+    <select>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+</body>
+</html>

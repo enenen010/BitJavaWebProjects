@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li><a href="#">menu</a></li>
+        <li><a href="#">menu</a></li>
+        <li><a href="#">menu</a></li>
+        <li><a href="#">menu</a></li>
+    </ul>
+    <ul>
+        <li><img src="img/small01.png" alt=""></li>
+        <li><img src="img/small02.png" alt=""></li>
+        <li><img src="img/small03.png" alt=""></li>
+        <li><img src="img/small04.png" alt=""></li>
+        <li><img src="img/small05.png" alt=""></li>
+        <li><img src="img/small06.png" alt=""></li>
+    </ul>
+    <script type="text/javascript">
+        var arr=[];
+        var target=document;
+
+
+        for(var i=0; i<target.childElementCount; i++){
+            arr.push(target.removeChild());
+        }
+        var carousel=document;
+        for(img of arr){
+            img.style.width='300px';
+        }
+        carousel.appendChild(arr.shift());
+        var callback=function(){
+            var before=carousel.removeChild(carousel.firstElementChild);
+            arr.push(before);
+            carousel.appendChild(arr.shift());
+        }
+        setTimeout(callback,3000);
+        //장점: 문자열제어 필요없음 엘리먼트 단위
+
+        // 유사배열 배열기능 다못씀 인덱스로 불러오는 정도
+        // target.children;
+        // target.childNodes;
+
+
+    </script>
+</body>
+</html>

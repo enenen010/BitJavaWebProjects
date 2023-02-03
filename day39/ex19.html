@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+       
+       //map과 유사
+        var obj={};
+        obj=new Object();
+        obj['key1']='val1';
+        obj['key2']=1111;
+        console.log(obj['key1']);
+        console.log(obj['key2']);
+        console.log(obj);
+        console.log(obj['key3']);//undefined
+        console.log(obj);
+
+        obj[1]=0;
+        console.log(obj[1]);//어? 배열이네? 
+        //배열도 Object였음.
+
+
+        var b=new String('key5');
+        obj[b]='val5';
+        console.log(obj[b]);
+        obj.key1;
+        //obj.1111; //오류
+        //그래서 약속함 Object면 문자열을 키로 쓰기로
+
+
+        //js는 스스로 내부가 자료구조로 구성되어있다 딕셔너리
+        //js의 변수선언은 최상위객체 window에 문자열 키값을 추가하는 행위
+        c=4444; 
+        console.log(c); //나온다!!
+        console.log(d); //undefined 빨갛게뜨지만 맞음
+        //이유
+        console.log(typeof window);//Object
+        console.log(window.c);//4444
+        console.log(window.h);//undefined
+        //console.log(d)의 오류는 어시스트에 가까움, window없이하면 오류처럼보이게
+
+        //한마디로, 그냥 저장이아니라 모든걸 window Object에 때려넣고 가져다 쓰는게 js의 변수다.
+        //js는 자료구조가 근간 = Object가 근간
+        
+        //java보다 더 객체지향적 객체가 근간이라니
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

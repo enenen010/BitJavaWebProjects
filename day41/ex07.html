@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css" rel="stylesheet">
+        #carousel{
+
+        }
+        #carousel>ul{
+            width: 210px;
+            height: 210px;
+            background-image: "";
+        }
+        #carousel>ul>li{
+            width: 210px;
+            height: 210px;
+            background-image: "";
+        }
+        #carousel>ul>li>img{
+            width: 210px;
+            height: 210px;
+            background-image: "";
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <h2></h2>
+    <h2></h2>
+    <div class="gal"></div>
+    <div class="carousel">
+        <!--
+            carousel.style.color              ''
+            carousel.style.color='blue'       'blue'
+            각각 이렇게 나옴 css가 설정한 값을 가져올수 없다?  인라인 값을 가져온다.(실제 DOC[HTML]에 적힌 값)
+        -->
+        <ul>
+            <li>item1</li>
+            <li>item2</li>
+            <li>item3</li>
+            <li>item4</li>
+            <li>item5</li>
+            <li>item6</li>
+        </ul>
+    </div>
+    
+    <script type="text/javascript">
+        //내가 일을 덜하려면 브라우저에 일을 맏기자
+        var carousel=document.getElementById("carousel");
+    </script>
+</body>
+</html>

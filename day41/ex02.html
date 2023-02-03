@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+        .container{
+            width: 600px;
+            margin: 0 auto;
+        }
+        .container>#menu{
+            background-color: gray;
+            overflow: hidden;
+        }
+        .container>#menu>ul{
+            padding: 0;
+            list-style: none;
+            width: 400px;
+            margin: 0 auto;
+        }
+        .container>#menu>ul>li{
+            float: left;
+            width: 100px;
+        }
+        .container>#menu>ul>li>a{
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            text-align: center;
+            color:#fff;
+            text-decoration: none;
+        }
+        .container>#menu>ul>li>a:hover{
+            text-decoration: overline;
+        }
+
+        .carousel{
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .carousel>ul{
+            width: 600px;
+            height: 200px;
+            overflow: hidden;
+            list-style: none;
+            padding: 0;
+        }
+        .carousel>ul>li{
+            float: left;
+        }
+        .carousel>ul>li>img{
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- ul>(li>img)*6 -->
+    <!-- <ul style="list-style:none;"> 
+        이렇게 하면 ul.style.listStyle 했을때 none 나옴
+        = js의 옵션은 CSS보다 상위 우선순위다.(인라인이므로)
+    --> 
+    <ul>
+        <li><img src="img/small01.png" alt=""></li>
+        <li><img src="img/small02.png" alt=""></li>
+        <li><img src="img/small03.png" alt=""></li>
+        <li><img src="img/small04.png" alt=""></li>
+        <li><img src="img/small05.png" alt=""></li>
+        <li><img src="img/small06.png" alt=""></li>
+    </ul>
+
+    <script type="text/javascript">
+        var ul = document.firstElementChild.lastElementChild.firstElementChild;
+        for(li of ul.children){
+            li.firstElementChild.style.width='100px';
+        }
+        ul.style.width='600px';
+    </script>
+</body>
+</html>
