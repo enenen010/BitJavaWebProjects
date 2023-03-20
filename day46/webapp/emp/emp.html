@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="../style.css">
+<title>Emp | Detail</title>
+<style type="text/css">
+#content form{
+	width: 400px;
+	margin: 0px auto;
+}
+#content form>div{
+	margin-bottom: 25px;
+	text-align: center;
+}
+#content form>div>label{
+	width: 120px;
+	display: inline-block;
+	background-color: #ddd;
+	text-align: left;
+}
+#content form>div>input{
+	width: 250px;
+}
+
+.err{
+	color: red;
+	font-style: italic;
+}
+</style>
+<script type="text/javascript" src="../js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" src="../js/jquery.bxslider.min.js"></script>
+<script type="text/javascript" src="../js/menu.js"></script>
+<script type="text/javascript">
+var loadData=function(empno){
+	/*$.get('one.do', {empno:empno}, function(data){
+		console.log(data);
+	});*/
+	
+	//.get()대신 .ajax()사용 -> 장점? 에러 callback이 가능
+		//type: 메소드 타입, 1.9버전 이상은 type대신 method사용. default는 get
+		//headers: 요청 헤더
+		//contentType: data{empno:empno)에 영향을 준다. form의 enctype과 동일, 
+					//나중에 파일업로드시 바꾸게 될 것->multipart/form-data
+		//dataType에 영향을 주는 것은 success callback의 매개변수이다. data:{empno:empno}이 아님!
+	$.ajax({
+		url: 'one.do',
+		method: 'get',
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+		data: {empno:empno},
+		dataType: 'json',
+		success: function(data){
+				$('#content input')
+					.eq(0).val(data.emp[0].empno)
+					.end().eq(1).val(data.emp[0].ename)
+					.end().eq(2).val(data.emp[0].sal)
+					.end().eq(3).val(data.emp[0].hiredate)
+					.end().eq(4).val(data.emp[0].mgr)
+					.end().eq(5).val(data.emp[0].comm)
+					.end().eq(6).val(data.emp[0].deptno);
+			},
+		error: function(xhr, status, err){
+			//alert("에러("+status+")");
+			console.log(status);
+			console.log('-----------');
+			console.log(err);
+		}
+	});
+};
+
+$(function(){
+	console.log(location.search);
+	//location.search.substr(location.search.indexOf('=')+1);
+	var empno=location.search.substr(location.search.indexOf('=')+1);
+	loadData(empno);
+	
+	$('#content form')
+		.find(":text")
+		.prop('readonly', true)
+		.css({'border-color':'white', 'border-width':'0'})
+		;
+	$('#content form').one('submit', function(){
+		$('#content')
+			.find('h2').html("수정페이지")
+			.end()
+			.find('input')
+			.filter(":gt(3)")
+			.add('#content input:eq(1)')
+			.add('#content input:eq(2)')
+			.removeProp('readonly');
+		$(this).one('submit', function(){
+			console.log('수정실행');	
+		});
+		return false;
+	})
+	
+});
+</script>
+</head>
+<body>
+	<div class="container">
+		<div id="header">
+			<h1>비트교육센터</h1>
+			<div>
+				<form enctype="application/x-www-form-urlencoded">
+					<label for="id">id</label>
+					<input type="text" name="id" id="id"/>
+					<label for="pw">pw</label>
+					<input type="password" name="pw" id="pw"/>
+					<button>로그인</button>
+					<a href="../login/join.html">join</a>
+				</form>
+			</div>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="../index.html">home</a></li>
+				<li><a href="../intro.html">intro</a></li>
+				<li><a href="#">emp</a>
+					<ol>
+						<li><a href="list.html">list</a></li>
+						<li><a href="add.html">add</a></li>
+					</ol>
+				<li><a href="../login/form.html">login</a></li>
+			</ul>
+		</div>
+		<div id="content">
+			<h2>상세페이지</h2>
+			<form>
+				<div>
+					<label for="empno">empno</label>
+					<input type="text" name="empno" id="empno" />
+				</div>
+				<div>
+					<label for="ename">ename</label>
+					<input type="text" name="ename" id="ename" />
+				</div>
+				<div>
+					<label for="sal">sal</label>
+					<input type="text" name="sal" id="sal" />
+				</div>
+				<div>
+					<label for="hiredate">hiredate</label>
+					<input type="text" name="hiredate" id="hiredate" />
+				</div>
+				<div>
+					<label for="mgr">mgr</label>
+					<input type="text" name="mgr" id="mgr" />
+				</div>
+				<div>
+					<label for="comm">comm</label>
+					<input type="text" name="comm" id="comm" />
+				</div>
+				<div>
+					<label for="deptno">deptno</label>
+					<input type="text" name="deptno" id="deptno" />
+				</div>
+				<div>
+					<button type="submit">수정</button>
+					<button type="button">삭제</button>
+					<button type="button">뒤로</button>
+				</div>
+			</form>
+		</div>
+		<div id="footer">
+			&copy; by bitacademy co.ltd.<br/> All rights reserved.
+		</div>
+	</div>
+</body>
+</html>

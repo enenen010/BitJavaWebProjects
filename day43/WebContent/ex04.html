@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    ul{
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        width: 1200px;
+    }
+    ul>li{
+        float: left;
+    }
+
+    ul>li>img{
+        width: 200px;   
+    }
+    #carousel{
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+    }
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js">
+    var su=0, cnt=1;
+    window.onload=function(){
+        //방법1. $('#carousel').css('width',400);//2개씩
+        //방법2. $('#carousel').css('width',200*cnt);//cnt
+        // setInterval(nextImg,3000);
+
+        su=-1;
+        nextImg();
+    };
+    function nextImg(){
+        //초기 if(su++>=5)su=0;
+        //방법1. if(su++>=4)su=0;//2개씩
+        
+        //방법2. if(su++>=6-cnt)su=0;
+        // $('#carousel').css('margin-left',-200*su);
+
+        if(su++>=6-cnt)su=0;
+        $('img').css('width',function(){
+            if(idx==su)return 200;
+            return 0;
+        });
+        setTimeout(nextImg,3000);
+    }
+</script>
+</head>
+<body>
+    <div id="carousel">
+        <ul>
+            <li><img src="imgs/small01.png" alt=""></li>
+            <li><img src="imgs/small02.png" alt=""></li>
+            <li><img src="imgs/small03.png" alt=""></li>
+            <li><img src="imgs/small04.png" alt=""></li>
+            <li><img src="imgs/small05.png" alt=""></li>
+            <li><img src="imgs/small06.png" alt=""></li>
+        </ul>
+    </div>
+</body>
+</html>

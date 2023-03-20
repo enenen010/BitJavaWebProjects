@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet"></style>
+<script type="text/javascript">
+    var btn;
+
+    //DOM Level 2  :  해당 이벤트(onclick)를 직접 대입(덮어쓰기) - 변수에 대입
+    // window.onload=function(){
+    //     btn=document.querySelector("button");
+    //     btn.onclick=function(){
+    //         console.log('level 2 event..')
+    //     }
+    //     btn.onclick=function(){alert('click');} // 얘로 바뀜
+    // }
+
+    //DOM Level 3 :  이벤트 리스너 메서드를 통해 등록 (추가)  - 자료구조에 담김
+    btn=document.querySelector("button");
+    var callback=function(){
+        console.log('level 3 event..')
+    }
+    btn.click();//이건 같음
+    btn.addEventListener('click',callback); //첫 매개변수 ''는 lv2에서 on뺀 이름 넣으면됨.
+    btn.addEventListener('click',function(){alert('click');});
+    btn.addEventListener('click',function(){alert('click2');});
+    btn.addEventListener('click',callback);//같은 걸로하면 추가 안됨
+    
+    btn.removeEventListener('click',callback);//지우는 메서드 제공
+
+    btn.addEventListener('click',f=function(){
+        alert('오직 한번만 실행');
+        btn.removeEventListener('click',f);
+    });
+
+    btn.addEventListener('click',function(){
+        alert('오직 한번만 실행');
+    },{once:true}); //브라우저 종속
+
+
+    naver.addEventListener('click',function(){
+        alert('이동 안할까?');
+        return false;// 이동해버림 왜? 추가니까
+    });
+    //이동 안하려면
+    naver.addEventListener('click',function(e){
+        e.preventDefault(); 
+        //엘리먼트의 기본기능을 취소 - 링크 이동기능 취소
+        //반드시 첫라인에 적어야 됨
+        // lv2도 가능 return이 편해서 쓰는 거임(이건 취소해서 이동다시하려면 location)
+        alert('이동 안할까?');
+    });
+    
+
+
+</script>
+</head>
+<body>
+	<h1>DOM Level 3</h1>
+</body>
+</html>

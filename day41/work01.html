@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css" rel="stylesheet">
+        .carousel{
+            color: red;
+        }
+        .carousel>li{
+            width: 210px;
+            height: 210px;
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <h2></h2>
+    <h2></h2>
+    <div class="gal"></div>
+    <ul class="carousel">
+        <li>item1</li>
+        <li>item2</li>
+        <li>item3</li>
+        <li>item4</li>
+        <li>item5</li>
+        <li>item6</li>
+    </ul>
+    <script type="text/javascript">
+        //내가 일을 덜하려면 브라우저에 일을 맏기자
+        var h1=document.getElementsByTagName('h1')[0];
+        var carousel=document.getElementsByClassName('carousel')[0];
+        var ksh=document.getElementById('ksh');
+        var gal=document.getElementsByClassName('gal')[0];
+        //조합
+        var arr=[];
+        for(var i=0;i<6;i++){
+            var img='<img src="img/small0'+(i+1)+'.png">';
+            arr.push(img);
+        }
+        var calLang=3;
+        var callback=function(){
+            gal.innerHTML="";
+            for(var i=0; i<calLang; i++){
+                gal.innerHTML+=arr[i];
+            }
+            var temp=arr.shift();
+            arr.push(temp);
+            setTimeout(callback,2000);
+
+            carousel.appendChild(carousel.firstElementChild);
+        }
+        callback();
+        
+    </script>
+</body>
+</html>

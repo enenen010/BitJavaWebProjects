@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> -->
+	<style rel="stylesheet" type="text/css">
+	
+	</style>
+	<script src="js/jquery-1.12.4.min.js"></script>
+	<!-- 애니메이터 써서 개판 -->
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script type="text/javascript">
+		var bx1,bx2;
+		
+		var option={
+			
+		};
+		
+		//js는 싱글스레드 setInterval
+		// bx.startAuto(); 도 인터벌임
+		//이건 브라우저문제 js가 그렇게 무겁게 쓰라 만든거 아님
+		$(document).ready(function(){
+			bx1=$('<ol/>')
+			.prependTo('div')
+			.html($('div>ul').html())
+			.bxSlider();
+			bx2=$('div>ul').bxSlider({
+				onSlideNext:function(a,b,c){
+					bx1.goToSlide(c);
+				}
+			}); //제이쿼리객체 bx슬라이더
+
+			//메서드로 제어
+			// bx.goToSlide(3);
+			// bx.goToNextSlide();
+			// bx.goToPrevSlide();
+			// bx.startAuto(); 
+			// bx.stopAuto();
+			// bx.getCurrentSlide();//활성화 슬라이드 수
+			// bx.getSlideCount();//전체 슬라이드갯수
+			// bx.redrawSlider();//
+			// bx.reloadSlider();//재시작
+			// bx.destroySlider();//끝
+    	});
+
+	</script>
+</head>
+<body>
+	<div id="big">
+		<ul>
+			<li><img src="imgs/small01.png"></li>
+			<li><img src="imgs/small02.png"></li>
+			<li><img src="imgs/small03.png"></li>
+			<li><img src="imgs/small04.png"></li>
+			<li><img src="imgs/small05.png"></li>
+			<li><img src="imgs/small06.png"></li>
+		</ul>
+	</div>
+</body>
+</html>

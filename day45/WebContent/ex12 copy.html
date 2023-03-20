@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+    table{
+        border-collapse: collapse;
+    }
+    table,th,td{
+        border: 1px solid gray;
+    }
+    table tr:th:first-child{
+        width: 100px;
+    }
+
+    table tr>th:nth-child(3),
+    table tr>th:nth-child(4),
+    table tr>th:nth-child(5){
+        width: 80px;
+    }
+</style>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $.get('ex13.json',{cnt:5},function(){
+            data.stu.forEach(function(ele,idx){
+                var tr=$("<tr/>").appendTo('tbody')
+                .append($('<td/>').html(ele.num))
+                .append($('<td/>').html(ele.name))
+                .append($('<td/>').html(ele.kor))
+                .append($('<td/>').html(ele.eng))
+                .append($('<td/>').html(ele.meth));
+            });
+        },'json');//생략가능 이유: 서버에서 contenttype설정해서
+        //설정안하고 그냥받으면 text json으로 받게
+    });
+
+</script>
+</head>
+<body>
+    <h1>학생성적리스트</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>학번</th>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>

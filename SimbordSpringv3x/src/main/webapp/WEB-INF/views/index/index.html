@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+* {box-sizing: border-box; margin: 0; padding: 0;}
+#listPage{
+	padding-top: 80px;
+	margin: 0px auto;
+	width: 1000px;
+	height: 800px;
+}
+#listPage>h2{
+	display: block;
+	margin: 0px auto;
+	width: 100px;
+	height: 35px;
+	color: #2d1700;
+	font-size: 30pt;
+	white-space: nowrap;
+}
+#listPage>.add{
+	margin: 0px auto;
+	width: 850px;
+	height: 50px;
+	margin-top: 80px;
+}
+#listPage>.add>a{
+	display: inline-block;
+	width: 80px;
+	height: 35px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	text-decoration: none;
+	float: right;
+	text-align: center;
+	padding-top: 7px;
+	color: #2d1700;
+}
+#listPage>.add>a:hover{background-color: gray;}
+#listPage>.table{
+	margin: 0px auto;
+	width: 850px;
+	height: auto;
+	border-top: 2px solid #2d1700;
+}
+#listPage>.table div>span,#listPage>.table div>a{
+	display: inline-block;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	border-bottom: 1px solid #e2e2e2;
+}
+#listPage>.table div>span:nth-child(1){width: 48px;}
+#listPage>.table div>span:nth-child(2){width: 400px;}
+#listPage>.table div>span:nth-child(3){width: 200px;}
+#listPage>.table div>span:nth-child(4){width: 200px;}
+#listPage>.table div>a{width: 400px;}
+#listPage>.table div>a:hover{background-color: #e1ebf6; cursor: pointer;}
+
+#listPage>#pageList{
+	display:block;
+	margin: 0px auto;
+	margin-top: 20px;
+	width: 850px;
+	height: 35px;
+	text-align: center;
+}
+#listPage>#pageList>a{
+	display: inline-block;
+	margin: 0px auto;
+	width: 30px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	background-color: gray;
+}
+</style>
+<style type="text/css">
+* {box-sizing: border-box; margin: 0; padding: 0;}
+#detailPage{
+	position: absolute;
+   	left: 0; right: 0; top: 50px; bottom: 0;
+	margin: 0px auto;
+	width: 850px;
+	height: 550px;
+	background-color: white;
+	border: 2px solid gray;
+	border-radius: 10px;
+	overflow: hidden;
+	display: none;
+}
+#detailPage>button{
+	float: right;
+	margin-right: 15px;
+	margin-top: 3px;
+	background-color: rgba(0,0,0,0);
+	border: 0px;
+	font-size: 30px;
+	width:30px;
+	height:30px;
+	color: gray;
+}
+#detailPage>button:hover{cursor: pointer;}
+#detailPage>h2{
+	display: block;
+	margin: 0px auto;
+	width: 850px;
+	height: 35px;
+	color: gray;
+	font-size: 15pt;
+	background-color: #e6edf6;
+	text-decoration: none;
+	padding-left: 10px;
+	padding-top: 5px;
+}
+#detailPage>form{
+	display: block;
+	margin: 0px auto;
+	width: 700px;
+	height: 450px;
+	margin-top: 50px;
+}
+#detailPage>form>div{border-bottom: 1px solid #e2e2e2;}
+#detailPage>form>div:nth-child(1){
+	float: right;
+	margin-right: 30px;
+}
+#detailPage>form>div:nth-child(2){clear: both;}
+#detailPage>form>div>button,#detailPage>form>div>a{
+	display: inline-block;
+	width: 60px;
+	height: 25px;
+	border: 1px solid gray;
+	border-radius: 5px;
+	text-decoration: none;
+	text-align: center;
+	line-height: 20px;
+	color: #2d1700;
+	background-color: white;
+	font-size: 13pt;
+	margin-bottom: 0;
+}
+#detailPage>form>div>button:hover,#detailPage>form>div>a:hover{
+	background-color: gray;
+	cursor: pointer;
+}
+
+#detailPage>form>div>span{
+	display: inline-block;
+	color: #2d1700;
+	height: 50px;	
+	line-height: 50px;
+	width: 100px;
+}
+#detailPage>form>div>input,#detailPage>form>div>.textEditer{
+	border: 2px;
+	border-style: solid;
+	border-color: #e2e2e2; 
+	border-radius: 5px;
+}
+#detailPage>form>div>input{
+	width: 590px;
+	height: 35px;
+	line-height: 50px; 
+}
+#detailPage>form>div>.textEditer{
+	width: 700px;
+	height: 250px;
+	overflow-y: scroll;
+}
+#detailPage>.errorview{color: red; background-color: #ffdfd4; width: 100%; display: block;}
+</style>
+<script src="http://localhost:8080/simBoard/js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+	//리스트 관련
+	var loadList=function(data1,page,pagemax){
+		data1.page = page;
+		data1.pagemax = pagemax;
+		$('#listPage .table>.tbody>div').remove();
+		$('#pageList>a').remove();
+		$.ajax({
+		  url: 'http://localhost:8080/simBoard/nboard/list.do',
+		  type: 'get',
+		  contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+		  data: data1,
+		  dataType: "json",
+		  success: function(data){
+					var list = data.list;
+					for(var i=0; i<list.length; i++){
+						var row = $('<div/>')
+							.append($('<span/>').text(list[i].num))
+							.append($('<a/>').val(list[i].nqid).text(list[i].sub)
+									.click(function(e){
+										loadDetail($(e.target).val());
+										DetailReadOnly();
+										$('#detailPage>form>.btns').children().show()
+										                           .eq(0).hide();
+										$('#detailPage').show();
+										return false;
+									}))
+							.append($('<span/>').text(list[i].id))
+							.append($('<span/>').text(list[i].wDate));
+						$('#listPage .table>.tbody')
+							.append(row);
+					}
+					for(var i=0; i<data.pageMax; i++){
+						$('#pageList')
+						.append($('<a/>').prop('href','#'+(i+1)).text((i+1))
+						.click(function(e){
+										loadList({},$(e.target).text(),10);
+										
+										return false;
+									}));
+					}
+					},
+		  error: function(xhr,status,err){
+			  alert("에러("+status+")");
+			  console.log(err);
+		  }
+		});
+	}
+	//디테일 관련
+var DetailWrite=function(){
+	$('#detailPage>form').children()
+		.find('input').prop('readonly',false).css('border','2px solid #e2e2e2')
+  .end().find('.textEditer').prop('contenteditable','true').css('border','2px solid #e2e2e2');
+}
+var DetailReadOnly=function(){
+	$('#detailPage>form').children()
+		.find('input').prop('readonly',true).css('border','0px')
+  .end().find('.textEditer').prop('contenteditable','false').css('border','0px');
+}
+var SetDetail=function(nqid,sub,id,content){
+		$('#detailPage>form').children()
+						.eq(1).find('input').val(sub)
+			.end().end().eq(2).find('input').val(id)
+			.end().end().eq(3).find('.textEditer').html(content)
+			.end().next().val(nqid)
+	}
+
+var loadDetail=function(nqid){
+	$.ajax({
+		url: 'http://localhost:8080/simBoard/nboard/detail.do',
+		type: 'get',
+		contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+		data: {nqid:nqid},
+		dataType: 'json',
+		success: function(data){
+			var obj = data.obj;
+			SetDetail(obj.nqid, obj.sub, obj.id, obj.content);
+		},
+		error: function(xhr,status,err){
+			console.log(err);
+		}
+	})
+}
+$(function(){
+	loadList({});
+	
+	//리스트 페이지 관련
+	$('#listPage>.add>a').click(function name() {//글쓰기
+		SetDetail('', '', '', '');
+		DetailWrite();
+		$('#detailPage>form>.btns').children().hide()
+								   .eq(0).show();
+		$('#detailPage').show();
+		return false;
+	})
+	.parent().find('button').click(function(e){
+		var seltype = $(e.target).parent().find('select option:selected').val();
+		var selvalue = $(e.target).prev().val();
+		loadList({[seltype]:selvalue});
+	})
+	
+	//디테일 페이지 관련
+	$('#detailPage>.exitBtn').click(function name() {
+		SetDetail('', '', '', '');
+		$('#detailPage>form>.btns>a')
+			.prev().removeClass('edit').addClass('add').text('입력')
+			.next().removeClass('detailgo').addClass('editgo').text('수정');
+			$('#detailPage>.errorview').text('');
+		$('#detailPage').hide();
+	});
+	
+	$('#detailPage>form>.btns>button').click(function name(e) {
+		var url='';
+		var data={};
+
+		var nqid=$('#detailPage>form>.nqid').val();
+		var sub=$('#detailPage>form>div>.sub').val();
+		var id=$('#detailPage>form>div>.user').val();
+		var content=$('#detailPage>form>div>.textEditer').html();
+		var img="/";
+
+		var validcheck = true;
+		$('#detailPage>form>div>:nth-child(2)').not('a').each(function(idx,item){
+			var value = $(this).val();
+			if($(this).hasClass('textEditer'))value=$(this).html();
+
+			if(value==''){
+				$('#detailPage>.errorview').text($(this).prev().text()+'이(가) 입력되지 않았습니다.');
+				validcheck=false;
+				return false;
+			}
+		})
+
+		if(!validcheck)return;
+
+		if($(e.target).hasClass('add')){url='nboard/add.do'; data={sub:sub,id:id,content:content,img:img};}
+		if($(e.target).hasClass('edit')){url='nboard/edit.do'; data={nqid:nqid,sub:sub,id:id,content:content,img:img};}
+		if($(e.target).hasClass('delete')){url='nboard/delete.do'; data={nqid:nqid};}
+		$.ajax({
+		  url: 'http://localhost:8080/simBoard/'+url,
+		  type: 'post',
+		  contentType:'application/x-www-form-urlencoded; charset=UTF-8',
+		  data: data,
+		  dataType: "json",
+		  success: function(data){
+					loadList({});
+					$('#detailPage>.exitBtn').click();
+					},
+		  error: function(xhr,status,err){
+			  alert("에러("+status+":"+err+")");
+			  console.log(err);
+		  }
+		});
+	});
+
+	$('#detailPage>form>.btns>a').click(function(e){
+		if($(e.target).hasClass('editgo')){
+			$(e.target).prev().removeClass('add').addClass('edit').text('수정완료').show()
+			.next().removeClass('editgo').addClass('detailgo').text('수정취소')
+			.next().hide();
+			$('#detailPage>.errorview').text('');
+			DetailWrite();
+		}
+		else if($(e.target).hasClass('detailgo')){
+			$(e.target).prev().removeClass('edit').addClass('add').text('입력').hide()
+			.next().removeClass('detailgo').addClass('editgo').text('수정')
+			.next().show();
+			$('#detailPage>.errorview').text('');
+			DetailReadOnly();
+		}
+		return false;
+	});
+});
+
+</script>
+</head>
+<body>
+<div id="listPage">
+	<h2>게시글</h2>
+	<div class="add">
+		<select class="searchType">
+			<option value="sub">제목</option>
+			<option value="id">작성자</option>
+		</select>
+		<input type="text" class="search">
+		<button type="button">검색</button>
+		<a href="#">글쓰기</a>
+	</div>
+	<div class="table">
+		<div class="thead">
+			<span>no</span><span>제목</span><span>글쓴이</span><span>날짜</span>
+		</div>
+		<div class="tbody"></div>
+	</div>
+	<div id="pageList"></div>
+</div>
+<div id="detailPage">
+	<bitton class="errorview"></bitton>
+	<button class="exitBtn">X</button>
+	<h2>글쓰기</h2>
+	<form method="post">
+		<div class="btns">
+			<button class="add" type="button">입력</button>
+			<a href="#" class="editgo">수정</a>
+			<button class="delete" type="button">삭제</button>
+		</div>
+		<div>
+			<span>제목</span>
+			<input type="text" class="sub">
+		</div>
+		<div>
+			<span>작성자</span>
+			<input type="text" class="user">
+		</div>
+		<div>
+			<span>내용</span>
+			<div class="textEditer"></div>
+		</div>
+		<input type="hidden" class="nqid">
+	</form>
+</div>
+</body>
+</html>

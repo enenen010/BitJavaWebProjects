@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--DOM LV1-->
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            width: 500px;
+            height: 500px;
+            background-color: aqua;
+        }
+    </style>
+    <script type="text/javascript">
+        //DOM LV2
+        var div1;
+        window.onload=function(){
+            div1=document.querySelector('button');
+            var target=document.querySelector('#target');
+
+            //마우스 V2
+            div1.onmouseover;//올라감
+            div1.onmouseout;//빠짐
+            div1.onmousedown;//누름
+            div1.onmouseup;//올라옴
+            div1.ondblclick;//더블클릭
+
+            document.onclick;//얘도됨
+        }
+    </script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

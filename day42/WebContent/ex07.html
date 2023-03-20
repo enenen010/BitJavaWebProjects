@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ex07</title>
+<style type="text/css" rel="stylesheet">
+	nav{}
+	nav>ul{
+		list-style: none;
+		margin: 0px;
+		padding: 0px;
+	}
+	nav>ul>li{
+		float: left;
+		width: 100px;
+		background-color: gray;
+		text-align: center;
+		color: white;
+		cursor: pointer;
+	}
+	nav>ul>li>ol{
+		list-style: none;
+		margin: 0px;
+		padding: 0px;
+		overflow: hidden;
+		/*
+		이작업을 js에서 해야 js에서 제어가능
+		height: 0px;
+		height: 140px;
+		*/
+	}
+	nav>ul>li>ol>li{}
+	nav>ul>li>ol>li>a{
+		height: 35px;
+		display: block;
+		text-align: center;
+		background-color: gray;
+		line-height: 35px;
+		color: white;
+		text-decoration: none;
+	}
+</style>
+<script type="text/javascript">
+	var ul, lis;
+	window.onload=function(){
+		ul=document.querySelector('ul');
+		lis=ul.querySelectorAll('ul>li');
+		
+		var overCallback=function(e){
+            //li임 동적 자동으로: 제이쿼리등 라이브러리에따라 안될 수 있음
+            //그럴땐 e.target
+			//console.log(this, e.target);
+			this.querySelector('ol').style.height='140px';
+		};
+		var outCallback=function(e){
+			this.querySelector('ol').style.height='0px';
+		};
+		
+		for(li of lis){
+			if(li.querySelector('ol')){
+				li.querySelector('ol').style.height='0px';
+				li.addEventListener('mouseover', overCallback);
+				li.addEventListener('mouseout', outCallback);
+			}
+		}
+	};
+</script>
+</head>
+
+<body>
+<nav>
+	<ul>
+ 		 <li>menu</li>
+ 		 <li>menu2
+ 		 	<ol>
+ 		 		<li><a href="#">menu2-1</a></li>
+ 		 		<li><a href="#">menu2-2</a></li>
+ 		 		<li><a href="#">menu2-3</a></li>
+ 		 		<li><a href="#">menu2-4</a></li>
+ 		 	</ol>
+ 		 </li>
+ 		 <li>menu3
+ 		 	<ol>
+ 		 		<li><a href="#">menu3-1</a></li>
+ 		 		<li><a href="#">menu3-2</a></li>
+ 		 		<li><a href="#">menu3-3</a></li>
+ 		 		<li><a href="#">menu3-4</a></li>
+ 		 	</ol>
+ 		 </li>
+ 		 <li>menu4</li>
+	</ul>
+
+
+</nav>
+</body>
+</html>

@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    hikari:
+      connection-timeout: 3000
+      validation-timeout: 1000
+      maximum-pool-size: 10
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://192.168.99.100:3306/lecture
+    username: scott
+    password: tiger
+    
+logging:
+  level:
+    web: info
+    '[com.bit.boot04]': debug

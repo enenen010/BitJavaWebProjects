@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+
+<script type="text/javascript">
+	var table,input,btn,xhr;
+	var btnCallback=function(){
+		xhr.onreadystatechange=callback;
+		xhr.open();
+		xhr.send();
+	};
+
+
+
+	window.onload=function(){
+        //js 기본은 난몰라 니가 알아서해(콜백)
+		target=document.querySelector("#target");
+		btn=document.querySelector('button');
+		btn.onclick=function(){
+			xhr=new XMLHttpRequest();
+            //래디스테이트= 통신상황에따라 상황이 바뀌면 발생
+            //통신한번했는데 4번 바뀌네? 
+			xhr.onreadystatechange=function(ele){
+				// if(ele.target.status==200&&ele.target.readyState==4) 
+            if(ele.target.readyState==4){
+                // target.innerHTML=ele.target.responseText;
+                var doc=ele.target.responseXML;
+                    doc.childNodes[0].children;
+            }
+					
+			};
+			// xhr.open('get','ex09.jsp');
+            xhr.open('get','ex09.xml');
+			xhr.send();
+		};
+	};
+</script>
+<body>
+	<h1>ajax 통신</h1>
+	<input type="text"/>
+	<div id="target"></div>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+	<p>위는 결과<button>가져오기</button></p>
+</body>
+</html>

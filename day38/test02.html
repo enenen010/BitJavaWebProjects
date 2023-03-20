@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style rel="styledsheet" type="text/css">
+            div{
+                display: block;
+                margin: 0px auto;
+            }
+            header{
+                display: block;
+                background-color: aqua;
+                width: 600px;
+            }
+            nav{
+                display: block;
+                background-color: gray;
+                width: 600px;
+            }
+            main{
+                
+                width: 600px;
+                height: auto;
+                display: block;
+            }
+            main section{
+                float: left;
+                background-color: blue;
+                width: 400px;
+            }
+            main>section>article{
+                background-color: red;
+                width: 400px;
+            }
+            main>aside{
+                float:right;
+                background-color: purple;
+            }
+            footer{
+                width: 600px;
+                clear: both;
+                display: block;
+                background-color: pink;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <header>header</header>
+            <nav>nav</nav>
+            <main>
+                <section>section
+                    <article>article</article>
+                </section>
+                <aside>aside
+                    <ul>
+                        <li><a href="#">google</a></li>
+                    </ul>
+    
+                </aside>
+            </main>
+            <footer>footer</footer>
+        </div>
+    </body>
+</html>

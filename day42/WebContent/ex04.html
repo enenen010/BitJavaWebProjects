@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet"></style>
+<script type="text/javascript">
+    var h1;
+    //넣으면 넣은대로 다 실행
+    window.addEventListener('load',function(){
+        h1=document.querySelector('h1');
+        console.log('실행1',h1.innerHTML);
+    });
+    window.addEventListener('load',function(){
+        h1=document.querySelector('h1');
+        console.log('실행2',h1.innerHTML);
+    });
+
+    //마지막 애만 실행(실행2)
+    //=onload는 수많은 첨부 스크립트 중 내가적은 마지막 onload만이 실행되도록
+    //Lv2를 요구 (오버라이드 비슷함=부모꺼실행? ㄴㄴ)
+    window.onload=function(){
+        h1=document.querySelector('h1');
+        console.log('실행1',h1.innerHTML);
+    }
+    window.onload=function(){
+        h1=document.querySelector('h1');
+        console.log('실행2',h1.innerHTML);
+    }
+</script>
+</head>
+<body>
+	<h1>DOM Level 3</h1>
+</body>
+</html>

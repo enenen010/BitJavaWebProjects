@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.css"> -->
+	<style rel="stylesheet" type="text/css">
+	
+	</style>
+	<script src="js/jquery-1.12.4.min.js"></script>
+	<!-- 애니메이터 써서 개판 -->
+	<script src="https://cdn.jsdelivr.net/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+	<script type="text/javascript">
+		var arr=[];
+		
+		var option={
+			onSliderLoad:function(idx){//로딩때 단한번
+				$('#big').html(arr[idx].html());
+			}, 
+			onSliderResize:function(idx){}, //브라우저사이즈변경 - -h -> -v
+			onSlideBefore:function(
+			nowEle //이동위치의 객체 가리킴(left,right)
+			,beforeIdx //이동전 인덱스
+			,afterIdx  //이동후 인덱스
+			){},//right end
+			onSlideAfter:function(nowEle,beforeIdx,afterIdx){},//left end
+			onSlideNext:function(nowEle,beforeIdx,afterIdx){
+				$('#big').empty().append(arr[beforeIdx].html()+arr[afterIdx].html);
+				// $('#big').find('img')
+					$('#big').height(300).find('img').css('position','absolute')
+						.first().show().next().hide()
+						.prev().fadeOut(1000).next().fadeIn(1000);
+						// .prev().hide(1000).next().show(1000);
+			},//left start
+			onSlidePrev:function(nowEle,beforeIdx,afterIdx){}//right start
+		};
+
+		$(document).ready(function(){
+      		// $('.slider').bxSlider(option);
+			//이런 플러그인은 잡은곳 외에 추가로 DOM을 만들기 때문에 div에 id 붙인거임
+			//그후 DOM의 형태가 달라짐
+
+			$('#big>ul>li').each(function(idx,ele){
+				arr.push($(ele).clone());
+			});
+			$('#big>ul').bxSlider(option);
+
+    	});
+
+	</script>
+</head>
+<body>
+	<div id="big">
+		<ul>
+			<li><img src="imgs/small01.png"></li>
+			<li><img src="imgs/small02.png"></li>
+			<li><img src="imgs/small03.png"></li>
+			<li><img src="imgs/small04.png"></li>
+			<li><img src="imgs/small05.png"></li>
+			<li><img src="imgs/small06.png"></li>
+		</ul>
+	</div>
+</body>
+</html>

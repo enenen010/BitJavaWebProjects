@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    window.onclick=function(){
+        $('input').first().attr('type');
+
+        //래핑
+        $('li').wrap('<ol></ol>');
+        console.log($('li').wrap('<ol></ol>'));//그러나 잡은건 여전히 li
+        $('li').wrapAll('<ol></ol>');//대상들 한번에
+        $('li').unwrap('<ol></ol>');//벗기기
+    }; 
+</script>
+
+</head>
+<body>
+        <h1></h1>
+        <li></li>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--DOM LV1-->
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div{
+            width: 500px;
+            height: 400px;
+            background-color: aqua;
+        }
+        span{
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        //DOM LV2
+        var div1;
+        window.onload=function(){
+            div1=document.querySelector('div');
+            var span=document.querySelector('span');
+            div1.onmousemove=function(e){
+                console.log(e.x,e.y,e.pageX,e.pageY,e.screenX,e.screenY);
+                span.style.left=e.x+"px";
+                span.style.top=e.y+"px";
+            }
+
+            div1.onclick=function(){
+                span.style.left=e.x+"px";
+            }
+
+        
+        }
+    </script>
+</head>
+<body>
+    <div></div>
+</body>
+</html>

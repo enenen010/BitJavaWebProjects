@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" >
+    var callback=function(){
+        console
+    }
+
+    $(function(){
+        $('div').eq(1).css({'backgroundColor':'red'})
+        $('button')
+        .first().click(function(){
+            $('div').eq(1).hide('fast',callback);//0.2=200
+            //끝나고 함수 호출
+            // .hide()에도 easing 들어올수있다함
+        })
+        .next().click(function(){
+            // $('div').show('slow');//0.6=600
+            // $('div').show(3000);
+            //div크기가 커지고 작아지는 개념
+
+            $('div').show({
+                duration:3000, //기본
+                easing:'linear',//가속 없음
+                Comment:callback,
+
+                // step:function(a,b){ //번잡
+                //     //프로그래스바
+                //     console(a,b); //이동마다 진행(0~1),
+                // }
+                //더많은 옵션은 제이쿼리 UI사용 플러그인
+                progress:function(a,b,c){
+                    console(a,b,c); //a객체,b진행,c시간진행
+                },
+                // start:
+                // done:
+                // fail:
+                // always:
+            });
+        })
+        .next().click(function(){
+            //토글이 욜로갔네
+            $('div').toggle(3000);
+        })
+        .next().click(function(){
+            $('div').show();
+        });
+
+        // hide()
+        // show()
+        // toggle()
+
+        //진행동한 세로 크기 감소
+        $('button').eq(0).click(function(){
+            $('div').last().slideUp(3000);
+        })
+        .next().click(function(){
+            $('div').last().slideDown(3000);
+        })
+        .end().eq(2).click(function(){
+            $('div').last().slideToggle(3000);
+        });
+
+        //옅어지며 사라짐. 애니메이션 전부 끝나야 크기 한번에 없어짐
+        $('button').eq(0).click(function(){
+            $('div').last().fadeIn(3000);
+        })
+        .next().click(function(){
+            $('div').last().fadeOut(3000);
+        })
+        .end().eq(2).click(function(){
+            $('div').last().fadeToggle(3000);
+        })
+        .end().eq(3).click(function(){//얼마나투명해질래
+            $('div').last().fadeTo(3000,0.5,function(){
+                //그냥 크기 안없어져서 직접해야함
+                $('div').last().height(0);
+            });
+        })
+    })
+</script>
+</head>
+<body>
+    <div></div>
+    <button>btn1</button>
+    <button>btn2</button>
+    <button>btn3</button>
+    <button>btn4</button>
+    <div></div>
+</body>
+</html>

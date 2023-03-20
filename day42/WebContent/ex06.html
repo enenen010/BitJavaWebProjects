@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    div{
+        width: 300px;
+        height: 100px;
+        background-color: aqua;
+    }
+    div>div{
+        width: 100px;
+        height: 300px;
+        background-color: red;
+    }
+</style>
+<script type="text/javascript">
+    var box1,box2;
+    window.onload=function(){
+        box1=document.querySelector('div');
+        box2=document.querySelector('div>div');
+
+
+        box1.addEventListener('click',function(e){
+            console.log('box1 click');
+        });
+
+        //box1과 안겹치는 box2 부분 클릭해도 전파 -> 버블링이니까
+        box2.addEventListener('click',function(e){
+            console.log('box2 click');
+        });
+
+
+        // box1.addEventListener('mouseover',function(e){
+        //     if(box2.style.height=='0px')
+        //         box2.style.height=='300px';
+        //     else
+        //         box2.style.height=='0px';
+        // },true);
+
+        //제어가능: 그래서 onmouseleave, nmouseout 만든의미 희석됨
+        box1.addEventListener('mouseover', function(e){
+			e.stopPropagation();
+			box2.style.height='300px';
+		}, true);
+		box1.addEventListener('mouseout', function(e){
+			e.stopPropagation();
+			box2.style.height='0px';
+		}, true);
+		
+		box2.addEventListener('mouseover', function(e){
+			e.stopPropagation();
+			console.log('box2 over');
+		}, true);
+		box2.addEventListener('mouseout', function(e){
+			console.log('box2 out');
+		}, true);
+
+    }
+</script>
+</head>
+<body>
+	<div>
+        <div>
+        </div>
+    </div>
+</body>
+</html>

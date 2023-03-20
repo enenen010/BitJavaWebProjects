@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--DOM LV1-->
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+        #before{
+            background-color: blueviolet;
+            width: 100px;
+            height: 300px;
+            float: left;
+            margin: 0 auto;
+        }
+        #next{
+            background-color: red;
+            width: 100px;
+            height: 300px;
+            float: left;
+            margin: 0 auto;
+        }
+        #carousel{
+            width: 210px;
+            height: 700px;
+            float: left;
+            margin: 0 auto;
+        }
+
+    </style>
+    <script type="text/javascript">
+        var before, next,carousel;
+
+        var arr=[];
+        var calLang=1;
+        for(var i=0;i<6;i++){
+            var img='<img src="img/small0'+(i+1)+'.png">';
+            arr.push(img);
+        }
+
+        var callback=function(){
+            next.click();
+            setTimeout(callback,3000);
+        }
+
+        window.onload=function(){
+            before=document.querySelector('#before');
+            next=document.querySelector('#next');
+            carousel=document.querySelector('#carousel');
+
+            before.onclick=function(){
+                carousel.innerHTML="";
+                var temp=arr.pop();
+                arr.unshift(temp);
+
+                for(var i=0; i<calLang; i++){
+                    carousel.innerHTML+=arr[i];
+                }
+            }
+
+            next.onclick=function(){
+                carousel.innerHTML="";
+                var temp=arr.shift();
+                arr.push(temp);
+
+                for(var i=0; i<calLang; i++){
+                    carousel.innerHTML+=arr[i];
+                }
+            }
+            callback();
+        }
+    </script>
+</head>
+<body>
+    <div id="before"></div>
+    <div id="carousel"></div>
+    <div id="next"></div>
+</body>
+</html>

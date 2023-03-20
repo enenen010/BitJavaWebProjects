@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    table{
+        border: 1px;
+    }
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js">
+
+    //제이쿼리 원리
+    function(a,b){
+        var obj={};
+        return obj;
+    }
+
+    console.log($==jQuery);//줄임
+
+    $('h1').css('color','red');
+
+    //엘리먼트 잡기
+    $('h1'); //기본적으로 CSS 선택자
+
+    //전부 제이쿼리 객체 반환으로 제이쿼리 메서드 사용가능
+    $('h1').next();//다음
+    $('h1').prev();//이전
+    $('h1').nextAll();//같은 dip 다음 전부
+    $('h1').prevAll();// //
+    $('h1').siblings().css('background-color','red'); //나빼고 다
+    $('h1').parent()//부모
+    $('h1').parents()//html태그까지 부모 전부
+    $('h1').children()//자식들
+
+    //같은거 
+    $('li').eq(0).css('color','red');
+    $('li:nth-child(1)').css('color','red');
+
+    //.even .odd 같은 3.5버전대부터 쓸수있는 거 있으니 참고
+    $('li').first().css('color','red');
+    $('li').last().css('color','red');
+    
+    $('li').filter(':eq(0)').css('color','red'); 
+    $('li').filter(':odd').css('color','red'); //이걸 3.5때 메서드로뺌
+    $('li').filter(':even').css('color','red'); 
+
+    //
+    $('li').add('li').css('color','red'); //추가
+    $('li').not('li').css('color','red'); //제거
+    $('li').not($('li')).css('color','red'); //객체도 파라매터로
+    $('li').end().css('color','red'); //선택에서 제외?
+
+
+    $().add('h1');
+
+    //확장된 선택자
+    $('li:eq(0)').css('color','red'); //eq
+    $('li:even').css('color','red'); //even
+    $('li.cl1').css('color','red'); //li 중 class cl1인거
+    $('li .cl1').css('color','red'); //li 의 자손 cl1
+    $('li>.cl1').css('color','red'); //li 의 자식 cl1
+
+    //셀렉터 [속성값=밸류]
+    $('input[type=password]').css('color','red'); //타입검색
+    $('[type=password]').css('color','red'); //타입검색
+    //줄이기 type 속성용
+    $(':password').css('color','red'); //타입검색
+
+
+
+</script>
+</head>
+<body>
+    <h1></h1>
+    <p>제이쿼리를 사용합니다</p>
+    <h2>선택자</h2>
+    <p>엘리먼트 선택</p>
+    <h2>메서드</h2>
+    <p>엘리먼트 제어</p>
+    <ul>
+        <li id="l1">item1</li>
+        <li class="cl1">item2</li>
+        <li class="cl1 cl2">item3</li>
+        <li class="cl2">item4</li>
+        <li id="l2">item5</li>
+    </ul>
+    <!-- form>(div>label+input)*3 -->
+    <form action="#">
+        <div><label>ID</label><input type="text"></div>
+        <div><label>PW</label><input type="password"></div>
+        <div><label>num</label><input type="number"></div>
+    </form>
+</body>
+</html>

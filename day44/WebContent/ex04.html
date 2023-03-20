@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" >
+    console.log($('button'));
+    console.log($('input'));
+    $('div').children().filter('label:first-child')
+    .css(
+        {
+            display:'block',
+            width:$('input').first().outerWidth()+'px',
+            'backgroundColor':'gray'
+        });
+
+    
+
+    $(document).ready(function(){
+        $('input').eq(1).focus();
+        $('form').submit(function(){
+            console.log('submit 취소');
+            return false;
+        });
+
+        //포커스
+        $('input').eq(0)
+        .focus(function(){
+            $(this).val('');
+        })
+        .blur(function(){
+
+        })
+        //같은거 이해가 쉬움
+        .focusin(function(){
+            $(this).select();
+        })
+        .focusout(function(){
+
+        });
+
+        //트리거는 in,out 이 없음
+        $('input').eq(1).focus();
+        $('input').eq(1).blur();
+
+        $('input').eq(1).keyup(function(){
+            if($(this).val().length>4){
+                // $('input').eq(2).focus();
+                //filter 선택한 요소중에
+                $(this).parent().next().children().filter('input').focus();
+                //find 선택한 요소의 자식 요소중에
+                $(this).parent().next().find('input').focus();
+            }
+        });
+
+        //선택: input 텍스트 드래그 등
+        $('input').eq(2).select(function(e){
+            
+        });
+
+        //상태변화: input 엔터, select 값 바뀜, 체크 등
+        $('select').add($).change(function(e){
+            console.log(this.val());
+        });
+
+        //이벤트객체
+        $('input').eq(2).select(function(e){
+            console.log(e); //볼 수 있음
+            e.target;
+        });
+
+    });
+    
+    
+    
+    
+</script>
+</head>
+<body>
+<h1>키보드 이벤트</h1>
+<form action="">
+
+<div><label>item1</label><input type="checkbox"></div>
+<div><label>item2</label><input type="checkbox"></div>
+<div><label>item3</label><input type="checkbox"></div>
+<div><label>item4</label><input type="radio" name="ra"></div>
+<div><label>item5</label><input type="radio" name="ra"></div>
+<div><label>item6</label><input type="radio" name="ra"></div>
+<div>
+    <select name="" id="">
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+        <option value=""></option>
+    </select>
+</div>
+<div>
+    <input type="submit" value="submit1">
+    <input type="reset" value="reset1">
+    <button>submit2</button>
+    <button type="submit">submit3</button>
+    <button type="reset">reset2</button>
+</div>
+</form>
+<!-- 브라우저에따라 button form 안밖으로 기본 submit 인거 있음 제이쿼리시 주의(잘못잡지않게) -->
+<button>button1</button>
+
+
+</body>
+</html>

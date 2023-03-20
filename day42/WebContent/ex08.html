@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ex08</title>
+<script type="text/javascript">
+	var xhr, target, btn, table;
+	window.onload=function(){
+		target=document.querySelector("#target");
+		btn=document.querySelector('button');
+		table=document.querySelector('table');
+		btn.onclick=function(){
+			xhr=new XMLHttpRequest();
+			xhr.onreadystatechange=function(ele){
+				//request : client 1->2 server
+				//resposne : client 4(4:response를 통해 보든 값을 받아놓은 상태)<-3 server
+				if(ele.target.status==200&&ele.target.readyState==4){
+					//target.innerHTML=ele.target.responseText;
+					var tbody=document.createElement('tbody');
+					var doc=xhr.responseXML;
+					var arr=doc.childNodes[0].children;
+					for(stu of arr){
+						var num=stu.children[0].childNodes[0].nodeValue;
+						var name=stu.children[1].childNodes[0].nodeValue;
+						var kor=stu.children[2].childNodes[0].nodeValue;
+						var eng=stu.children[3].childNodes[0].nodeValue;
+						var math=stu.children[4].childNodes[0].nodeValue;
+						
+						console.log(num,name,kor,eng,math);
+						var tr=document.createElement('tr');
+						var td=document.createElement('td');
+						td.appendChild(document.createTextNode(num));
+						tr.appendChild(td);
+						td=document.createElement('td');
+						td.appendChild(document.createTextNode(name));
+						tr.appendChild(td);
+						td=document.createElement('td');
+						td.appendChild(document.createTextNode(kor));
+						tr.appendChild(td);
+						td=document.createElement('td');
+						td.appendChild(document.createTextNode(eng));
+						tr.appendChild(td);
+						td=document.createElement('td');
+						td.appendChild(document.createTextNode(math));
+						tr.appendChild(td);
+						tbody.appendChild(tr);
+					}
+					
+					table.appendChild(tbody);
+				}
+
+			};
+			//xhr.open(메소드방식, URL)
+			xhr.open('get', 'ex09.xml');
+			xhr.send();
+		}
+	};
+</script>
+</head>
+<body>
+	<h1>ajax 통신</h1>
+	<div id="target"></div>
+	<table>
+		<thead>
+			<tr>
+				<th>학번</th>
+				<th>이름</th>
+				<th>국어</th>
+				<th>영어</th>
+				<th>수학</th>
+			</tr>
+		</thead>
+	</table>
+	<input />
+	<p>위는 결과<button>가져오기</button></p>
+</body>
+</html>

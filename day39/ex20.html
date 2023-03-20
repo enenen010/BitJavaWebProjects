@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        //w3school 레퍼런스 참고하면 여러정보
+        //js 만들어질때 C, 어셈블리로 만듬
+       
+       //map과 유사
+       //정수는 int, 실수는 folat에 근간 (오차가 큼)
+       //애초에 문자열 처리를 목적으로 만듬(웹)
+        var a=1111;
+        var b=new Number(1111);
+        var c=new Number(1111);
+        var d='1111';
+        var e="aaaa";
+        var f=new String('aaaa');
+        var g=new String('aaaa');
+        //valueOf가 있다는건..
+        //js의 모든 타입은 참조변수(전부 주소니까 전부 받는거다 var로)
+        console.log(a.valueOf());
+        //이걸 막기위해 자바는 자료형을 기술해야 됐었다.
+
+        //===은 js가 연산시 어떻게든 값을 맞춰 연산하므로
+        //다른 자료형인데 true 나올때 값+타입까지 비교해주는거
+        //오히려 그냥 연산이 equres네 이거(형변환 equres)
+        console.log(a==b,b==c);//true, false
+        console.log(a===b,b===c);//equrs아님 값+타입비교임
+        console.log(a==d,a===d);//
+        console.log(e==f,f==g);//
+        console.log(e===f,f===g);//
+        
+
+        var h=true;
+        var j=new Boolean(true);
+
+        //array 배열은 기능 제약 달린 Object
+        var x=[5];
+        var y=new Array(5);//5가 5개 생성자 효과.
+        console.log(x,y);
+        console.log(x.length,y.length);
+
+        x[5]=1;//유의하자 제어를 잘해야된다 
+        x.push(1);//순서대로 입력
+        x.unshift(2);//맨앞에 넣음
+        x.pop();//얘까지 쓰면 stack 진짜꺼냄
+        x.shift();//얘는 queue
+        //제어 잘해야 겠다.
+
+        x.reverse()//역순 정렬
+        while(x.length){
+            console.log(x.pop());
+        }
+
+        for(z in x){//object반복이라 key value --> 
+            console.log(z,x[z]);
+        }
+        for(z of x){
+            console.log(z);
+        }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

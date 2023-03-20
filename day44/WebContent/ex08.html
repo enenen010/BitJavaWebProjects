@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    div{width: 50px; height: 50px; background-color: red;}
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" >
+    var callback=function(){
+        console
+    }
+
+    $(function(){
+        //제이쿼리 애니메이션 = CSS 에니메이션 (부드럽고,가벼움)
+        //제이쿼리 쪽에서 css 애니메이션 만들어놓고 메서드
+
+        //특징: 시작 끝만 정하고 중간은 알아서해줌
+        $('div').click(function(e){
+            console.log($(this).queue().length);
+            
+            //한번에 멈추기
+            // for(int i=0;i<=$(this).queue().length;i++);
+            $(this).clearQueue().stop();
+
+            $(this).dequeue();
+
+            $(this).stop();//멈춤(다음 스택 애니메이션 실행)
+            $(this).finish();//스킵
+        })
+
+        console.log('start');
+        // $('div').animate({maginLeft:'300px'});//300이동
+        $('div') //디폴트는 queue 한쪽
+        .animate({maginLeft:'300px'},3000,'linear')
+        .animate({maginTop:'300px'},3000,'linear')
+        .animate({maginLeft:'0px'},3000,'linear')
+        .dequeue()//양쪽에서 뽑아냄 뭘? 스택 처음꺼 마지막꺼 같이(마지막 추가)
+        .animate({maginTop:'0px'},3000,'linear');
+        console.log('end');
+        //비동기적
+        
+    })
+</script>
+</head>
+<body>
+    <div>box1</div>
+</body>
+</html>

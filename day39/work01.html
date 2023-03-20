@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style rel="stylesheet" type="text/css"> 
+    .container{
+        width: 96%;
+        margin: 0 auto;
+        background-color: coral;
+    }
+    .container .grid1,.container .grid2,.container .grid3,.container .grid4,
+    .container .grid5,.container .grid6,.container .grid7,.container .grid8,
+    .container .grid9,.container .grid10,.container .grid11,.container .grid12{
+        float: left;
+        box-sizing: border-box;
+    }
+
+    .container .grid1{width: 8%; background-color: aqua;}
+    .container .grid2{width: 16%; background-color: plum;}
+    .container .grid3{width: 24%; background-color: gray;}
+    .container .grid4{width: 32%;}
+    .container .grid5{width: 40%;}
+    .container .grid6{width: 48%;}
+    .container .grid7{width: 56%;}
+    .container .grid8{width: 64%;}
+    .container .grid9{width: 72%;}
+    .container .grid10{width: 80%;}
+    .container .grid11{width: 88%;}
+    .container .grid12{width: 96%;background-color: firebrick;}
+    .row{
+        clear: both;
+    }
+
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <div class="grid1">grid1</div>
+            <!-- 13개째는 clear아니라 자동 줄바꿈 -->
+        </div>
+        <div class="row">
+            <div class="grid2">grid2</div>
+            <div class="grid2">grid2</div>
+            <div class="grid2">grid2</div>
+            <div class="grid2">grid2</div>
+            <div class="grid2">grid2</div>
+            <div class="grid2">grid2</div>
+        </div>
+        <div class="row">
+            <div class="grid3">grid3</div>
+            <div class="grid3">grid3</div>
+            <div class="grid3">grid3</div>
+            <div class="grid3">grid3</div>
+        </div>
+        <div class="row">
+            <div class="grid12">grid12</div>
+        </div>
+    </div>
+</body>
+</html>

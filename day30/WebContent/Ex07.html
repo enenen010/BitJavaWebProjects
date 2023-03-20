@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<!-- 역할 input을 가져다 쿼리스트링 만듬 
+이동 submit
+submit할때 쿼리스트링 action?id=
+-->
+<!-- 못쓰는 문자 많음 ?, \등 URL 구분자 -->
+<form action="Ex05.jsp">
+id:<input type="text" name="id"/><br>
+pw:<input type="text" name="pw"/><br>
+pw:<input type="password" name="pwss"/><br>
+
+item1<input type="radio" name"ra" value="ra1">
+item2<input type="radio" name"ra" value="ra2" checked="checked">
+item3<input type="radio" name"ra" value="ra3"><br>
+
+item3<input type="checkbox" name"ch" value="ch1">
+item3<input type="checkbox" name"ch" value="ch2">
+item3<input type="checkbox" name"ch" value="ch3"><br>
+
+list<select name="sel" size="2" multiple="multiple" >
+<option value="l1"> list1 </option>
+<option value="l2" selected="selected"> list2 </option>
+<option value="l3"> list3 </option>
+</select>
+
+
+
+<textarea rows="10" cols="10" name="ta" readonly="readonly"></textarea>
+<input type="submit" value="전달"/>
+</form>
+<!-- html로 할수 있는건 딱 여기까지 만들어주는 거 그뒤처리 java-->
+
+</body>
+</html>

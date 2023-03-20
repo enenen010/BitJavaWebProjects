@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    
+    //보다 진보된 객체지향이라 호출먼저도 가능
+    //(단, <script>가 다르면 아래에서만 가능) 컴파일은 위부터 진행해서 script단위 컴파일
+    //웹 프레임워크, 라이브러리 등 사용할때는 위쪽에 선언해야 아래에서 쓸 수 있다.
+    var val=func1();  
+
+    // function
+    function func1(){
+        console.log('func01');
+        return 1234;
+    }
+    var val=func1(); //void면 undefined, return null이면 null
+
+
+    f();//오류  위에는 되고 나는왜?
+    //js는 실행하기전에 func()은 먼저 체크해서 올려둠 그래서 호출먼저해도 가능
+    //변수대입은 순서대로 이루어져서 f가 뭔지 모르는 상태임(f라는 이름의 함수가 없음)
+    
+    //이건뭐냐?
+    var f=func1;
+    f=function (){ //익명함수
+        console.log('func');
+    };
+    f();
+    console.log(typeof f);//function
+    //익명함수는 이름이 없어서 올라가도 미리 호출할 방법이 없음
+    //변수에 대입되기 전까지 기다려야함
+
+    //한번 실행하고 끝
+    (function (){ //익명함수
+        console.log('func');
+    })();
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

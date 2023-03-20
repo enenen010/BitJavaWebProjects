@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    table{
+        border: 1px;
+    }
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js">
+    jQuery(); //함수임
+    jQuery('h1');//엘리먼트 잡힘
+    jQuery('h2');//여러개
+    jQuery('#l1');//id
+    jQuery('.cl1');//class
+    
+    //document.querySelector()랑 같다고? 얘가 더 늦게 나왔는데
+    //제이쿼리가 더 나음
+    jQuery('h1+p');
+    jQuery('h1~p');
+    jQuery('ul>li:nth-child(3)');
+    jQuery('ul>li:nth-child(2n)');
+
+    //querySelector :  document 객체 .innerHTML 됨
+    //jQuery        :  jQuery 객체    안됨
+    //따라서 JQuery 명령어를 통해야지만 사용가능
+
+    //장점: 체이닝 - jQuery만으로 DOM 트레버링이 가능
+    //오직 DOM제어를 편하게 하기위해 사용 DOM부터 시작 window 아님
+
+    //제이쿼리 문서는 사전형 = 찾아보긴 좋음 공부하긴 ㄴㄴ
+</script>
+</head>
+<body>
+    <h1></h1>
+    <p>제이쿼리를 사용합니다</p>
+    <h2>선택자</h2>
+    <p>엘리먼트 선택</p>
+    <h2>메서드</h2>
+    <p>엘리먼트 제어</p>
+    <ul>
+        <li id="l1">item1</li>
+        <li class="cl1">item2</li>
+        <li class="cl1 cl2">item3</li>
+        <li class="cl2">item4</li>
+        <li id="l2">item5</li>
+    </ul>
+</body>
+</html>

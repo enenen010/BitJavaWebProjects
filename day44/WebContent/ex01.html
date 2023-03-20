@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    table{
+        border: 1px;
+    }
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" >
+    //document 객체도 입력가능
+    $(window).load(function(){//DOM 올라감 (늦게)
+        console.log($('h1'));//undefined
+    });
+    $(document).load(function(){
+        console.log($('h1'));//못잡음
+    });
+    $(window).ready(function(){ //DOM 준비된 시점(먼저)
+        console.log($('h1'));//잡음
+    });
+    $(document).ready(function(){
+        console.log($('h1'));//잡음
+    });
+    //가뜩이나 느린 제이쿼리 준비시점에 보등 사용
+    $(function(){ //그래서 이게 위에 레디 였음
+        console.log('ready 생략..');
+
+        $('img').error(function(){
+            $('img').attr('src','imgs/small02.png');
+        }).attr('src','imgs/small01.png')
+    });
+    
+    //스크롤 위치 구하기
+    //어느정도 내려가면 새페이지 아래에 추가하도록(비동기 통신)
+    $(window).scroll(function(){
+        console.log('scrolling'
+        ,$(document).height-screen.height
+        );
+    });
+
+    $(window).resize(function(){ //브라우저 사이즈 변할때(반응형)
+        console.log($(window).width,$(window).height);
+    });
+    
+</script>
+</head>
+<!-- VSCODE 라이브서버는 DOM구조를 약간 바꾼다고함 가벼워서 -->
+<body>
+<h1>event</h1>
+<img src="imgs/small00.png"/>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>

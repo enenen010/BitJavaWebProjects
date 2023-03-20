@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <h1>form tag</h1>
+        <form>
+            <input type="text" value="텍스트필드"/>
+            <input type="password" value="비번"/>
+            <input type="file" value="파일경로창"/>
+
+            <!--추가된거-->
+            <!--
+                브라우저마다 퍼포먼스가 다름(버튼모양, 갖다대면생기는 아닌지 등)
+                왜? HTML5는 브라우저 회사끼리 이 태그를 쓰자고 약속한거라
+                구현, 디자인은 각각 브라우저에 따른거라
+            -->
+            <input type="number" value="5"/><!--tf+숫자버튼-->
+            <input type="color"/>
+            <input type="date"/>
+            <input type="datetime"/>
+            <input type="time" value=""/>
+            <input type="range" min="1" max="9" value="5"/>
+
+            <!--
+                디자인 티 안나는거
+                
+                (핸드폰 웹 고려)
+                tel=숫자 자판을 띄움(number도)
+                text=문자자판을 띄움
+                url= .com버튼이 있는 문자자판
+                email= @버튼이 있는 문자자판
+
+                핸드폰은 그 자판만 뜨니까.
+                PC는? 잘못입력하면 블락과 알림창 띄워줌 (??입력하세요)
+                입력안하면 넘어가긴함
+
+                VM엔진이 기본탑재이기 떄문(JS기능 기본제공 가능)
+                기본기능에서 모자란 부분 나중에 js배우고 코딩할거임
+            -->
+            <input type="tel"/>
+            <input type="text"/>
+            <input type="url"/>
+            <input type="email"/>
+            <input type="text" value="버튼1"/>
+
+
+            <input type="submit" value="버튼1"/>
+            <input type="button" value="버튼2"/>
+            <button>버튼3</button> <!--기본 submit-->
+            <button type="button">버튼3</button> 
+        </form>
+        <p>form 밖에선 button 기본</p>
+        <button>버튼5</button> 
+    </body>
+</html>

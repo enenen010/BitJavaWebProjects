@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" >
+    var cnt=1;
+    $(function(){
+
+        //js   :load전 DOM 준비때 된것 부터 접근 시작
+        //j쿼리 :
+
+        //1.다른 버튼에 이 click가 안붙는 이유
+        //ready때의 버튼은 1개 밖에 없었으니까
+        $('button').click(function(){
+            cnt++;
+            $('div').append('<button>btn'+cnt+'</button>');
+
+            //제이쿼리는 사용할 당시의 DOM을 검색: 이때의 last  1,2,3,4,5...
+            $('button').last().click(function(){//이렇게해야 따로 붙는다.
+                console.log('btn'+text()+'을 클릭');
+            })
+        })
+
+        //2.극복 :어태치먼트
+        //div에 버튼이 왔을때 콜백함수가 수행되는 이벤트 만듬
+        $('div').delegate('button','click',function(){
+            console.log('클릭1');
+        });
+        $(document).delegate('div>button','click',function(){//같은거
+            console.log('클릭2');
+        });
+        
+        $(document).undelegate('div>button','click');//대상 click 다지움
+        $(document).undelegate('div>button','click',callback1);//대상 click 함수만
+
+        //더 좋은거(이거 많이씀) 1.8이후 나옴
+        //장점: 이벤트 단위로 삭제가능
+        //단점: 대상을 정확히 정의해야함, 나중에 들어와도 무조건 붙으므로  설계 집단에 이벤트를 부여할때
+        $(document).on('click','div>button',callback1);
+        $(document).off('click','div>button',callback1);
+
+
+        $('button').click(function(){
+            cnt++;
+            $('div').append('<button>btn'+cnt+'</button>');
+        });
+        
+
+    })
+    
+    
+</script>
+</head>
+<body>
+<div><button>btn1</button></div>
+</body>
+</html>

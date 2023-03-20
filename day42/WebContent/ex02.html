@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ex02</title>
+<style type="text/css" rel="stylesheet">
+	form input+span{
+		color: red;
+		font-style: italic;
+	}
+</style>
+<script type="text/javascript">
+	var form, id, pw, re, sel, item0, span;
+	window.onload=function(){
+		//form태그 막기
+		form=document.querySelector('form');
+		id=form.querySelector('#id');
+		pw=form.querySelector('#pw');
+		re=form.querySelector('#re');
+		sel=form.querySelector('select');
+		item0=sel.querySelector('option');
+		sel.onfocus=function(){
+			sel.style.backgroundColor='white';
+			if(item0)sel.removeChild(item0);
+		};
+		
+		form.onsubmit=function(){
+			/*if(id.parentElement.querySelector('span')){
+				id.parentElement.removeChild(span);			
+			}
+			if(pw.parentElement.querySelector('span')){
+				pw.parentElement.removeChild(span);			
+			}
+			if(re.parentElement.querySelector('span')){
+				re.parentElement.removeChild(span);			
+			}*/
+			
+			for(ele of form.querySelectorAll('div')){
+				span=ele.querySelector('span');
+				if(span)
+					ele.removeChild(span);
+			}
+			
+			if(id.value==''){
+				span=document.createElement('span');
+				span.appendChild(document.createTextNode('아이디입력'));
+				id.parentElement.appendChild(span);
+				return false; //기본 true; false면 이동X
+				};
+			if(pw.value==''){
+				span=document.createElement('span');
+				span.appendChild(document.createTextNode('비밀번호입력'));
+				pw.parentElement.appendChild(span);
+				return false;
+			}
+			
+				
+			if(re.value==''){
+				span=document.createElement('span');
+				span.appendChild(document.createTextNode('비밀번호입력'));
+				re.parentElement.appendChild(span);
+				return false;
+			}
+			if(pw.value!=re.value){
+				span=document.createElement('span');
+				span.appendChild(document.createTextNode('패스워드불일치'));
+				re.parentElement.appendChild(span);
+				return false;
+			}
+			if(sel.value=='done'){
+				//sel.focus();
+				sel.style.backgroundColor='red';
+				return false;
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<h1>join</h1>
+	<form action="ex02.jsp">
+		<div>
+			<label for="id">id</label>
+			<input type="text" name="id" id="id"/>
+		</div>
+		<div>
+			<label for="pw">pw</label>
+			<input type="password" name="pw" id="pw"/>
+		</div>
+		<div>
+			<label for="re">re</label>
+			<input type="text" id="re"/>
+		</div>
+		<div>
+			<label for="name">name</label>
+			<input type="text" id="name" name="name"/>
+		</div>
+		<div>
+			<select name="sel">
+				<option value="done" selected="selected">선택해주세요</option>
+				<option>item1</option>
+				<option>item2</option>
+				<option>item3</option>
+				<option>item4</option>
+			</select>
+		</div>
+		<div>
+			<button type="submit">전송</button>
+			<button type="reset">취소</button>
+		</div>
+	</form>
+</body>
+</html>

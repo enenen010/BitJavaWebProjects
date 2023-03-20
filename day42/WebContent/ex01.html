@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Ex01</title>
+<style type="text/css" rel="stylesheet">
+	.conainer{
+		margin: 0px auto;
+	}
+	.conatiner>div{
+		
+	}
+	#header{}
+	#header>h1{
+		width: 225px;
+		heigh: 80px;
+		background-image: url("imgs/logo.png");
+		text-indent: -9990px;
+	}
+	#menu{
+		overflow: hidden;
+		background-color: gray;
+	}
+	
+	#menu>ul{
+		list-style: none;
+		padding: 0px;
+	}
+	#menu>ul>li{
+		width: 100px;
+		float: left;
+	}
+	#menu>ul>li>a{
+		height: 35px;
+		color: white;
+		text-align: center;
+		display: block;
+		text-decoration: none;
+		text-transform: uppercase;
+	}
+	#content{}
+	#content .carousel{
+		width: 100px;
+		height: 100px;
+		position: relative;
+	}
+	#content .carousel>div{
+		width: 100px;
+		height: 100px;
+		overflow: hidden;
+		margin-left: 30px;
+	}
+	#content .carousel>a{
+		width: 30px;
+		height: 100px;
+		display: block;
+		background-color: gray;
+		position: absolute;
+		top:0px;
+		text-align: center;
+		line-height: 100px;
+		text-decoration: none;
+		color: white;
+		font-size: 40px;
+	}
+	#content .carousel>a:nth-child(1){
+		left: 0px;
+	}
+	#content .carousel>a:nth-child(3){
+		left: 130px;
+	}
+	#content .carousel ul{
+		list-style: none;
+		width: 600px;
+		height: 100px;
+		padding: 0px;
+		margin: 0px;
+		overflow: hidden;
+		
+	}
+	#content .carousel ul>li{
+		float: left;
+	}
+	#content .carousel ul>li>a{}
+	#content .carousel ul>li>a>img{
+		width: 100px;
+	}	
+	#footer{
+		clear: both;
+	}
+</style>
+<script type="text/javascript">
+	var carousel, prv, nxt, ul, div, nxtTime;
+	window.onload=function(){
+		carousel=document.querySelector('.carousel');
+		div=document.createElement('div');
+		ul=carousel.querySelector('ul');
+		div.appendChild(ul);
+		ul.style.marginLeft='0px';
+		
+		prv=document.createElement('a');
+		prv.appendChild(document.createTextNode('<'));
+		prv.href='#';
+		
+		nxt=document.createElement('a');
+		nxt.appendChild(document.createTextNode('>'));
+		nxt.href='#';
+
+		carousel.appendChild(prv);
+		carousel.appendChild(div);
+		carousel.appendChild(nxt);
+	
+		prv.onclick=function(e){
+			clearTimeout(nxtTime);
+			var x=parseInt(ul.style.marginLeft);
+			x+=100;
+			if(x==0)x=-500;
+			else x+=100;
+			
+			ul.style.marginLeft=x+'px';
+			nextTime=setTimeout(nextCallback,3000);
+			return false;
+		}
+		
+		nxt.onclick=function(e){
+			nextCallback();
+			return false;
+		};
+		nxtTime=setTimeout(nextCallback, 3000);
+	};
+	
+	function nextCallback(){
+		clearTimeout(nxtTime);
+		var x=parseInt(ul.style.marginLeft)-100;
+		if(x==-600)x=0;
+		ul.style.marginLeft=x+'px';
+		nxtTime=setTimeout(nextCallback, 3000);
+	}
+
+</script>
+</head>
+<body>
+<div class="container">
+	<div id="header">
+		<h1>비트교육센터</h1>
+	</div>
+	<div id="menu">
+		<ul>
+			<li><a href="#">menu</a></li>
+			<li><a href="#">menu</a></li>
+			<li><a href="#">menu</a></li>
+			<li><a href="#">menu</a></li>
+		</ul>
+	</div>
+	<div id="content">
+		<div class="carousel">
+			<ul>
+				<li><a href="#"><img src="imgs/thumb01.jpg"/></a></li>
+				<li><a href="#"><img src="imgs/thumb02.jpg"/></a></li>
+				<li><a href="#"><img src="imgs/thumb03.jpg"/></a></li>
+				<li><a href="#"><img src="imgs/thumb04.jpg"/></a></li>
+				<li><a href="#"><img src="imgs/thumb05.jpg"/></a></li>
+				<li><a href="#"><img src="imgs/thumb06.jpg"/></a></li>
+			</ul>
+		</div>		
+	</div>
+	<div id="footer">
+		<p>&copy; by bitacademy co.ltd.</p>
+	</div>
+</div>
+</body>
+</html>

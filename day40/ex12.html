@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+
+        function callback(){
+            console.log("call");
+        }
+        callback();
+
+        //호출을 내가한게 아니라서 callback 
+        //callback활용 내장함수
+        setTimeout(callback,3000);//3초뒤
+        setInterval(callback,3000);//3초마다
+
+        //기본적인 동작방식이 이벤트 드라이브 아키텍처
+        //js의 vm엔진은 싱글스레드: 엥? 별도의 큐스택에 던져놓고 자기는 할일 함             //3갠데 우리가 쓰는게 1개 2개는 js동작을 위해
+        //주어진 시간이 지나면 꺼내서 실행
+        //이를 통해 싱글스레드의 단점을 극복   ->  빠르고 가볍다! (왔다갔다안하고, 한번에 하나씩)
+        //단점:  안정성(다른걸로 극복중)
+        console.log("before..");
+        setTimeout(callback,3000);//여기서 멈추는거 아님 그냥 따로 이벤트처럼
+        console.log("after..");
+
+        var a=setTimeout(callback,3000);
+        clearTimeout(a);
+
+        //되도록이면 Interval은 쓰지말자 느려짐
+        //이거만 하는거 아닌데 여기다 많이씀
+        //큐스택이 지저분해져서 과부하
+        a=setInterval(callback,3000);
+        setTimeout(function(){
+            clearInterval(a);
+        },10000);//10초되면 멈춤
+        clearInterval(a);
+
+        //재귀로 구현
+        var b;
+        function callback2(){
+            console.log("call");
+            b=setTimeout(callback,3000);
+        }
+        setTimeout(function(){
+            clearInterval(b); //setTimeout 실행 막음
+        }, 10000)
+
+
+        //문법은 여기까지
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

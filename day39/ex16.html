@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+       
+        //제어문(조건문)
+        if(true){
+            console.log(true);
+        }
+        else if(1){//0아니면 다참
+            console.log(true);
+        }
+        else if(""){//""빼고 다참
+            console.log(false);
+        }
+        else if(null){//거짓
+            console.log(false);
+        }
+        else if(new Object()){//참
+            console.log(true);
+        }
+        else if(undefined){//거짓
+            console.log(false);
+        }
+        //요런 부분이 웹기준 웹에서 입력받은거 그냥 if 넣으면 거짓인거 뜸
+
+        var a=3.14;
+        switch(a){
+            case 3.14:console.log(false);break;
+            case 1:console.log(false);break;
+            case 0+1:console.log(false);break;//심지어연산도
+            case '이이니':console.log(false);break;
+            default:console.log(false);break;
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

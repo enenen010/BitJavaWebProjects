@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+    table{
+        border-collapse: collapse;
+    }
+    table,th,td{
+        border: 1px solid gray;
+    }
+    table tr:th:first-child{
+        width: 100px;
+    }
+
+    table tr>th:nth-child(3),
+    table tr>th:nth-child(4),
+    table tr>th:nth-child(5){
+        width: 80px;
+    }
+</style>
+<script src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var collback=function(data,resultText,xhr){
+            console.log(typeof data);//문자열임 노드엘리먼트
+            //xml옵션주면 object  제이쿼리
+
+            // $() : 엘리먼트 받음 노드 엘리먼트 도
+            $(data).find('stu').each(function(idx,ele){
+			    var tr=$('<tr/>').appendTo('tbody');
+			    $(ele).children().each(function(idx,ele){
+				    tr.append('<td>'+$(ele).html()+'</td>');
+			    });
+                
+                
+                // .append('<td>'+arr.eq(0).html()+'</td>')
+                // .append('<td>'+arr.eq(1).html()+'</td>')
+                // .append('<td>'+arr.eq(2).html()+'</td>')
+                // .append('<td>'+arr.eq(3).html()+'</td>')
+                // .append('<td>'+arr.eq(4).html()+'</td>')
+            });
+        }
+        $.post('ex11.xml',{cnt:5},collback,'xml');
+        // $.get('ex11.xml',collback);//405 안만듬
+    });
+
+</script>
+</head>
+<body>
+    <h1>학생성적리스트</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>학번</th>
+                <th>이름</th>
+                <th>국어</th>
+                <th>영어</th>
+                <th>수학</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+</html>

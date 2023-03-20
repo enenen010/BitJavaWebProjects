@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    
+    //배열, Object
+    function func01(){}
+    var arr1=[111,'item1',func01];
+    for(ele of arr1){
+        if(typeof ele == 'function')
+            ele();
+        else
+            console.log(typeof ele, ele);
+    }
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

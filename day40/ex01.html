@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+       
+    //    버전을 계속 이야기하는게 웹은 버전이 중요 틀리면 아예 안돌아가기도
+
+    //셋다 같은거임
+    a=1;
+    var a=1;
+    window.a=1;
+
+    //Object 추가
+    window.obj={};
+    
+    //java는 undefined,null 구분X, js는 구분(모두 참조변수이므로)
+    //value값은 있는데  value가 가리키는 게 없으면 null
+    //value값이 없는게  undefined
+
+    //null은 명시적으로 줘야 null, 안주면 undefined
+
+    var obj1=new Object();
+        var obj2={"key1":"val1","key2":"val2"};
+        console.log(obj2['key1']); //val1
+        console.log(obj2.key2); //val2
+        obj1['key1']='val1';
+        obj1.key2='val2';
+        console.log(obj1.key1, obj1.key2); //val1 val2
+        //key는 어떠한 타입이든 들어올 수는 있지만,
+        //일반적으로 object의 key는 문자열로 나타낸다.
+        obj1[obj2]='val3';
+        console.log(obj1['obj2']); //undefined
+
+        //object는 배열이 들어올 수도 있다.
+        obj1.key3=[1,3,5,7];
+        console.log(obj1.key3[2]); //5
+        obj1.key4=obj2;
+        console.log(obj1);
+        //조심해야할 점
+        obj1.obj2=obj2; //obj1.obj2의 obj2는 key로 쓰는 것이 아니다. 문자열 obj2를 나타내는 것
+        obj1[obj1['obj2']];
+        console.log(window.obj2);
+
+        obj1.key3='val3';
+        console.log(obj1.key4,typeof(obj1.key4));
+        //value값이 없으면 null
+        
+        for(key in obj1){
+            console.log(key); //key값 얻기
+            console.log(typeof key); //key의 타입
+            console.log(obj1[key]); //value값
+        }
+
+        var a=1; //window.a=1
+        a=2; //window.a=2
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

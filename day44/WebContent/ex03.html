@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    div{
+        width: 300px;
+        background-color: aqua;
+    }
+    div>div{
+        width: 200px;
+        background-color: red;
+    }
+    div>div>div{
+        width: 100px;
+        background-color: palevioletred;
+    }
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" >
+
+    $(document).ready(function(){
+        // $('button').click(function(){});//모든버튼다잡음 조심
+        $('input')
+            .keydown(function(e){//어떤키든 받고싶다. 값이 안정확해도
+                console.log('down',e.key,e.keyCode);
+            })
+            .keypress(function(e){//
+                console.log('press',e.key,e.keyCode);
+            })
+            .keyup(function(e){//up이 정확한 값
+                console.log('up',e.key,e.keyCode);
+            })
+    });
+
+    
+    
+    
+</script>
+</head>
+<body>
+<h1>키보드 이벤트</h1>
+<input/>
+<button></button>
+<div>
+    box1
+    <div>
+        box2
+        <div>box3</div>
+    </div>
+</div>
+
+</body>
+</html>

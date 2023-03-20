@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    window.onclick=function(){
+        $('input').first().attr('type');
+
+        //inner                             //outer 어딘가에
+        $('ul').html();
+        $('ul').text();
+        $('ul').html('<li>item0</li>');
+        $('ul').text('item0');
+
+        //누적
+        $('ul').html($('ul')+'<li>item0</li>');
+        $('ol').append('<li>item0</li>');//뒤로 추가  appendchild
+        $('ol').prepend('<li>item0</li>');//앞으로 추가
+
+        //빼서 추가
+        $('ol').prepend(document.querySelector('ul>li:last-child'));//뒤로 추가  appendchild
+        $('ol').prepend($('ol>li').last());
+        $('ul>li').last().prependTo('ol');//ul의 마지막애를 ol로
+        $('ol').children().last().appendTo('ul');
+
+        //형제넣기
+        $('ol').before('<p>before</p>');//전 A B  B를 추가
+        $('ol').after('<p>after</p>');//후
+
+        $('ol').insertBefore('ul');// A를 추가 B후에  반대
+        $('ol').insertAfter('ul');
+
+    }; 
+</script>
+
+</head>
+<body>
+        <h1></h1>
+        <ul>
+            <li>item1</li>
+            <li>item2</li>
+            <li>item3</li>
+            <li>item4</li>
+        </ul>
+        <ol>
+            <li>item5</li>
+            <li>item6</li>
+            <li>item7</li>
+            <li>item8</li>
+        </ol>
+</body>
+</html>

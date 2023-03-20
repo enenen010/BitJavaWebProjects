@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    div{
+        width: 300px;
+        background-color: aqua;
+    }
+    div>div{
+        width: 200px;
+        background-color: red;
+    }
+    div>div>div{
+        width: 100px;
+        background-color: palevioletred;
+    }
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" >
+    console.log($('button').length);
+
+    $(document).ready(function(){
+        // $('button').click(function(){});//모든버튼다잡음 조심
+        $('button')
+        .eq(0).click(function(e){
+            //e: js이벤트 객체, 제이쿼리 객체아님
+            console.log(e.target===this); 
+        })
+        .next().dblclick(function(e){
+            console.log('더블클릭'); 
+        })
+        .next().mousedown(function(){
+
+             }).mouseup(function(){
+
+             }).mouseover(function(e){
+                console.log("위로");
+             }).mouseout(function(e){
+
+             })
+        .next().hover(function(){//toggle 없어짐 이거 애니메이션이라함, 대신이거
+            console.log("올라가거나 나갈때");//
+        })
+        $('div').mouseenter(function(){
+
+             }).mouseleave(function(){
+
+             });
+
+        
+        //모든이벤트는 DOM LV3 근데 2처럼 동작해서 사용성
+        $('a').click(function(e){
+            e.preventDefault(); //DOM 3방식
+            return false;//2방식 할지말지 결정가능
+        })
+        console.log(document.querySelector('a'))
+
+
+
+        //매개변수 없으면 트리거
+        $('button').eq(0).click();
+
+    });
+
+    
+    
+    
+</script>
+</head>
+<body>
+<h1>마우스 이벤트</h1>
+<button>btn1</button>
+<button>btn2</button>
+<button>btn3</button>
+<button>btn4</button>
+<button>btn5</button>
+<div>
+    box1
+    <div>
+        box2
+        <div>box3</div>
+    </div>
+</div>
+
+</body>
+</html>

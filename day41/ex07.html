@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style type="text/css" rel="stylesheet">
+        #carousel{
+            /* width: 100px;
+            height: 100px; */
+            overflow: hidden;
+        }
+        #carousel>ul{
+            list-style: none;
+            padding: 0px;
+        }
+        #carousel>ul>li{
+            float: left;
+        }
+        /* #carousel img{
+            width: 100px;
+        } */
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <h2></h2>
+    <h2></h2>
+    <div class="gal"></div>
+    <div class="carousel">
+        <!--
+            carousel.style.color              ''
+            carousel.style.color='blue'       'blue'
+            각각 이렇게 나옴 css가 설정한 값을 가져올수 없다?  인라인 값을 가져온다.(실제 DOC[HTML]에 적힌 값)
+        -->
+        <ul>
+            <li><img src="img/small01.jpg" alt=""></li>
+            <li><img src="img/small02.jpg" alt=""></li>
+            <li><img src="img/small03.jpg" alt=""></li>
+            <li><img src="img/small04.jpg" alt=""></li>
+            <li><img src="img/small05.jpg" alt=""></li>
+            <li><img src="img/small06.jpg" alt=""></li>
+        </ul>
+    </div>
+    
+    <script type="text/javascript">
+        //내가 일을 덜하려면 브라우저에 일을 맏기자
+        var w=100;
+        var carousel=document.getElementById('carousel');
+        // carousel.style.width=w+'px';
+        // carousel.style.height=w+'px';
+        var ul=carousel.firstElementChild;
+        for(li of ul.children){
+            li.firstElementChild.style.width=w+"px";
+        }
+        ul.style.marginLeft="0px";
+        cnt=0;
+        var callback=function(){
+            if(cnt==-1*w*(6-1))cnt=w;
+            cnt-=w/10;
+            ul.style.marginLeft=cnt+"px";
+        }
+        setInterval(callback, 62.5);
+    </script>
+</body>
+</html>

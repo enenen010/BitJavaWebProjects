@@ -1,0 +1,8 @@
+{"stu":[
+    {"num":1,"name":"user1","kor":45,"eng":67,"meth":56},
+    {"num":2,"name":"user2","kor":46,"eng":57,"meth":78},
+    {"num":3,"name":"user3","kor":34,"eng":89,"meth":74},
+    {"num":4,"name":"user4","kor":56,"eng":55,"meth":36},
+    {"num":5,"name":"user5","kor":79,"eng":78,"meth":78},
+    {"num":6,"name":"user6","kor":48,"eng":64,"meth":57}
+    ]}

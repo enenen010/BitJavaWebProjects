@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    //# 중요문법  CollBack
+
+    function func01(){
+    }
+    var f=func01;
+
+    function func02(a){
+        //~~~~~~~~
+        //실행유무를 다른 함수가 결정한다(CollBack)
+        a();
+    }
+    func02(f);
+
+    //js 주 기능이 이걸로 만들어짐
+    var arr1=[4444,2222,1111,3333];
+    console.log(arr1);
+    arr1.reverse();
+    console.log(arr1);
+    arr1.sort().reverse();
+    console.log(arr1);
+
+    //sort를 만든 사람은 사용자가 기능을 만들어 사용하도록 만들 수 있음
+    //CollBack!! js 대부분의 기능이 이걸 사용해서 만들어져있음.  나중 DOM같은것도
+    arr1.sort(
+        function(a,b){
+            console.log(arguments);
+            console.log(arguments.length);//2개받네
+            return 0;//0변화x 1정렬 -1뒤집어진다(reverse).
+            return a-b;//오름,내림 차순 계산
+            return arguments[0]-arguments[1]; //같은거
+
+            // return -1; //순서가 뒤집어짐
+            // return a-b; //오름차순
+            // return b-a; //내림차순
+
+            if(arguments.length==0)
+                return a-b;//오름차순 기본
+            else
+                return arguments();      
+        }
+    );
+    console.log(arr1);
+
+    //for  1.그냥씀, 2.in/of, 3.callback
+    var collback=function(a,b,c){
+        console.log(arguments.length);//매개변수 몇개? 3
+        console.log(a,b,c); //값, 인덱스, 
+    }
+    arr1.forEach(collback);
+
+    //var에 관하여
+    kk=1; //요렇게하나
+    var kk=1; //요렇게하나
+    //결과는 같다. 다만
+    //var을 붙였다는 것 자체를 구분해서
+    //1.js에선 기본적으로 함수내 지역변수 기능(js자체에선 이것말고 구분은 따로 없다..)
+    //2.이외 var를 붙였다는 걸 체크해서 뭔가 다른 기능을 주기도함(선택자 같은 역할)  ex) var a, var a 두개일때 처리
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

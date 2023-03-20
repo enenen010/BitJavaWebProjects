@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "node03",
+			"path": ".."
+		},
+		{
+			"name": "public",
+			"path": "../../node02/public"
+		}
+	],
+	"settings": {}
+}

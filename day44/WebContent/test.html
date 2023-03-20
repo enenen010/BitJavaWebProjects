@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--DOM LV1-->
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+        #before{
+            background-color: blueviolet;
+            width: 100px;
+            height: 200px;
+            float: left;
+            margin: 0 auto;
+        }
+        #next{
+            background-color: red;
+            width: 100px;
+            height: 200px;
+            float: left;
+            margin: 0 auto;
+        }
+        #carousel{
+            width: 600px;
+            height: 200px;
+            float: left;
+            overflow: hidden;
+        }
+        #carousel>div{
+            height: 200px;
+            float:left;
+        }
+        #carousel>div>img{
+            width: 200px;
+            height: 200px;
+            float: left;
+            margin: 0 auto;
+        }
+
+    </style>
+    <script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+        var cnt=(-1)*parseInt($('#carousel>div>img').length/2);
+        $(function(){
+            
+            $('#before').click(function(){
+                // cnt++;
+                $('#carousel>div').prepend($('#carousel>div').children().last());
+                // $('#carousel>div').animate({marginLeft:200*cnt+'px'},1000,'linear');
+            });
+            $('#next').click(function(){
+                cnt--;
+                $('#carousel>div').clone().appendTo($('#carousel'));
+                $('#carousel>div').animate({marginLeft:200*cnt+'px'},1000,'linear');
+                });
+        });
+        
+    </script>
+</head>
+<body>
+    <div id="before"></div>
+    <div id="carousel">
+        <div>
+            <img src="imgs/small01.png">
+            <img src="imgs/small02.png">
+            <img src="imgs/small03.png">
+            <img src="imgs/small04.png">
+            <img src="imgs/small05.png">
+            <img src="imgs/small06.png">
+        </div>
+    </div>
+    <div id="next"></div>
+</body>
+</html>

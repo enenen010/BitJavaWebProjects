@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    var obj1={"key1":"val1"};
+    obj1.key2='val2';
+    var f=function(){
+        console.log('f');
+    }
+    obj1.key3=f;
+    for(key in obj1){
+        if(typeof obj1[key]=='function')
+            obj1[key]();
+        else
+            console.log(obj1[key]);
+    }
+    
+    f=function(a){
+        //js는 함수도, 메서드도 있다.(java는 메서드만 있다)
+        //메서드: 객체가 가지고 있는 기능(함수의 한 종류 함수중 객체의 기능이 된 것)
+        //함수: 함수
+        console.log(obj1.key2);
+        console.log(this.key2);
+    }
+    obj1.key3(1234);
+
+    //window도 객체라 메서드,함수 모호하긴하나 코드적으로 객체에 포함된 건 메서드
+    //this가 obj냐 window
+
+    //this는 호출시점에 바인딩됨.
+
+    var a=1111;
+    function func01(a){
+        this.a=2222;//this 안쓰면 지역으로 취급
+    }
+
+    //이용하면 javaBean 만들 수 있음
+    obj1.setKey1=function(a){
+        this.key1=a;
+    }
+    obj1.getKey1=function(){
+        return this.key1;
+    }
+    obj1.setKey1('item1');
+    console.log(obj1.getKey1());
+
+    
+    obj2.newInstance=function(a){
+        arguments[0];
+        this.key1=a;
+    }
+    obj2.getKey1=function(){
+        return this.key1;
+    }
+    obj2.setKey1('item1');
+    console.log(obj2.newInstance());
+
+
+
+
+
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    ul{
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        width: 1200px;
+    }
+    ul>li{
+        float: left;
+        display: none;
+    }
+
+    .show{
+        display: block;
+    }
+/* 
+    ul>li>img{
+        width: 200px;   
+    }
+    #carousel{
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+    } */
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    window.onclick=function(){
+        $('li').first().addClass('show');//넣다
+        $('li').first().removeClass('show');//빼다
+        $('li').first().toggleClass('show');//있으면 빼고, 없으면 넣고
+        $('li').first().hasClass('show');//있니, 없니?
+    };
+</script>
+
+</head>
+<body>
+    <div id="carousel">
+        <ul>
+            <li><img src="imgs/small01.png" alt=""></li>
+            <li><img src="imgs/small02.png" alt=""></li>
+            <li><img src="imgs/small03.png" alt=""></li>
+            <li><img src="imgs/small04.png" alt=""></li>
+            <li><img src="imgs/small05.png" alt=""></li>
+            <li><img src="imgs/small06.png" alt=""></li>
+        </ul>
+    </div>
+</body>
+</html>

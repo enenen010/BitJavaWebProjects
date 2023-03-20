@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>HOME</title>
+    <style rel="stlyesheet" type="text/css">
+        body{
+            margin: 0px;
+        }
+        .header>h1{
+            width: 210px;
+            height: 50px;
+            background-image: url("imgs/logo.png");
+            text-indent: -999px;
+        }
+        .menu{
+            background-color: gray;
+            height: 35px;
+            text-align: center;
+            overflow: hidden;
+        }
+        .menu>ul{
+            list-style: none;
+            margin: 0px auto;
+            padding: 0px;
+            width: 400px;
+        }
+        .menu>ul>li{
+            width: 100px;
+            float: left;
+        }
+        .menu>ul>li>a{
+            color: white;
+            display: block;
+            height: 35px;
+            line-height: 35px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            transition: all .3s ease-in-out;
+        }
+        .menu>ul>li>a:hover,
+        .menu .active{
+            background-color: rgb(238, 238, 238);
+            color: black;
+        }
+        .container .content{
+            margin: 10px auto;
+            width: 100%;
+            text-align: center;
+            opacity: 0;
+            animation: showBox 1s ease-in-out forwards;
+        }
+        @keyframes showBox {
+            from{
+                transform: translateX(100px);
+            }
+            to{
+                opacity: 1;
+            }
+        }
+        .container .content>.box{
+            text-align: center;
+            width: 80%;
+            height: 150px;
+            border-radius: 10px;
+            margin: 10px auto;
+            border: 2px solid rgb(5, 5, 184);
+        }
+        .container .content>.table{
+            width: 80%;
+            margin: 20px auto;
+        }
+        .container .content>.table>div{
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+        .container .content>.table>div:first-child{
+            background-color: cornflowerblue;
+            font-weight: bold;
+            text-align: center;
+        }
+        .container .content>.table>div span{
+            display: inline-block;
+            height: 40px;
+            width: 100px;
+        }
+        .container .content>.table>div span:first-child{
+            text-align: right;
+            float: left;
+        }
+        .container .content>.table>div span:first-child+span{
+           margin-left: 10px;
+        }
+        .container .content>.table>div span:last-child{
+            float: right;
+        }
+        .container .content>.table>div a{
+            color: black;
+        }
+        .container .p3>p{
+            text-align: center;
+        }
+        .btn{
+            display: inline-block;
+            text-align: center;
+            width: 100px;
+            height: 35px;
+            border: none;
+            background-color:cornflowerblue;
+            box-shadow: 1px 1px 2px gray;
+            font-weight: bold;
+            border-radius: 2px;
+            text-decoration: none;
+            color: white;
+            line-height: 35px;
+            transition: all .3s ease-in-out;
+        }
+        .btn:hover{
+            background-color:rgb(3, 3, 146);
+        }
+        .container .footer{
+            font-size: 10pt;
+            position: fixed;
+            bottom: 0px;
+            padding: 15px;
+            background-color: grey;
+            width: 100%;
+        }
+
+        #popup{
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            position: fixed;
+            left: 0px; top: 0px;
+            opacity: 0;
+            animation: showPopup .5s ease-in-out forwards;
+        }
+        @keyframes showPopup {
+            from{}to{
+                opacity: 1;
+            }
+        }
+        #popup>.frame{
+            width: 400px;
+            margin: 80px auto;
+            border: 5px solid rgba(255,255,255,0.6);
+            border-radius: 9px;
+        }
+        #popup>.frame>div{
+            padding: 2px;
+        }
+        #popup>.frame>div:first-child{
+            background-color: skyblue;
+            border-radius: 5px 5px 0px 0px;
+            text-align: center;
+        }
+        #popup>.frame>.content{
+            padding: 50px 20px;
+            background-color: white;
+        }
+        #popup>.frame>div:last-child{
+            background-color: skyblue;
+            border-radius: 0px 0px 5px 5px;
+            text-align: right;
+        }
+        #popup label{
+            display: inline-block;
+            width: 45%;
+        }
+    </style>
+    <script text="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+    <script src="js/jquery.bxslider.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var bx;
+        $(function(){
+            $(document).on('click', '.p3>p>a', function(e){
+                $('#popup').show();
+                return false;
+            });
+            $(document).on('click', '.p3>.table a', function(e){
+                e.preventDefault();
+                var deptno=$(this).children().first().html();
+                //db접속
+                $.getJSON('http://127.0.0.1:8080/api/dept.json', {deptno:deptno}, function(data){
+                    console.log(data);
+                    $('#popup')
+                        .show()
+                        .find('h2').html('상세페이지')
+                        .end()
+                        .find('.footer>a:first-child').html('수정')
+                        .end()
+                        .find('input')
+                            .eq(0).val(deptno)
+                            .end()
+                            .eq(1).val(data.deptno[0].dname)
+                            .end()
+                            .eq(2).val(data.deptno[0].loc)
+                            .end()
+                            .prop('readonly', true);
+                    });
+                });
+                
+            $('<span>X</span>').css({
+                float:'right',
+                border: '1px solid gray',
+                borderRadius: '2px',
+                marginRight: '3px',
+                marginTop: '3px',
+                display: 'block',
+                cursor: 'pointer', 
+                width: '20px',
+                height: '20px',
+                color: 'gray',
+                backgroundColor: 'white'
+            }).prependTo('#popup .header')
+                .click(function(){
+                    $('#popup').click();
+                })
+            
+                $('#popup>div').click(function(e){
+                e.stopPropagation();
+            })
+            
+            $('#popup .footer>a').click(function(e){
+                e.preventDefault();
+                if($(this).html()=='수정' && $('#popup .header h2').html()=='상세페이지'){
+                    $('#popup .header h2').html("수정페이지");
+                    $('#popup').find('input').not(":first").removeProp('readonly');
+                }else if($(this).html()=='수정'){
+                    $('#popup form').submit();
+                }
+                if($(this).html()=='입력') {
+                    $('#popup form').submit();
+                }
+                if($(this).html()=='닫기') $('#popup').click();
+            });
+            
+            $('#popup form').submit(function(e){
+                e.preventDefault();
+                if($('#popup').find('h2').html().startsWith('입력')){
+                    var url='http://127.0.0.1:8080/api/add.json';
+                    // url='api/add.json';
+                }
+                if($('#popup').find('h2').html().startsWith('수정')){
+                    var url='http://127.0.0.1:8080/api/edit.json';
+                }
+                var param=$(e.target).serialize();
+                console.log(url, param);
+                $.post(url, param, function(){
+                    $('#popup').click();
+                    deptList();
+                })
+            });
+
+            $('#popup').hide()
+                    .click(function(e){
+                        $(this).hide();
+                        $(this)
+                            .find('input').val("")
+                                          .removeProp('readonly')
+                                          .end()
+                            .find('h2').html('입력페이지')
+                            .end()
+                            .find('a').first().html('입력');
+                    });
+            $('#popup').hide();
+            $('.container .content').hide();
+            $('.p1').show();
+            bx=$('.bx').bxSlider();
+            $('.bx-controls').hide();
+            setInterval(bx.goToNextSlide, 3000);
+            $('.menu>ul>li>a')
+                .eq(0).click(function(){
+                    $('.menu>ul>li>a').removeClass('active');
+                    $(this).addClass('active');
+                    $('.container .content').hide();
+                    $('.p1').show();
+                    return false;
+                })
+                .end()
+                .eq(1).click(function(){
+                    $('.menu>ul>li>a').removeClass('active');
+                    $(this).addClass('active');
+                    $('.container .content').hide();
+                    $('.p2').show();
+                    return false;
+                })
+                .end()
+                .eq(2).click(function(){
+                    $('.menu>ul>li>a').removeClass('active');
+                    $(this).addClass('active');
+                    $('.container .content').hide();
+                    $('.p3').show();
+                    deptList();
+                    return false;
+                })
+        });
+        function deptList(){
+            $('.content>.table>div')
+                .not(".content>.table>div:first-child").remove();
+            $.getJSON('http://127.0.0.1:8080/api/depts.json', function(data){
+                for(obj of data.dept){
+                    var row=$('<div/>');
+                    var link=$('<a href="#"/>');
+                    $('<span/>').html(obj.deptno).appendTo(link);
+                    $('<span/>').html(obj.dname).appendTo(link);
+                    $('<span/>').html(obj.loc).appendTo(link);
+                    row.append(link).appendTo('.content>.table');
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>비트교육센터</h1>
+        </div>
+        <div class="menu">
+            <ul>
+                <li><a href="#" class="active">HOME</a></li>
+                <li><a href="#">INTRO</a></li>
+                <li><a href="#">DEPT</a></li>
+                <li><a href="#">LOGIN</a></li>
+            </ul>
+        </div>
+        <div class="content p1">
+            <div class="bx">
+                <div><img src="imgs/thumb01.jpg" alt="img01"></div>
+                <div><img src="imgs/thumb02.jpg" alt="img02"></div>
+                <div><img src="imgs/thumb03.jpg" alt="img03"></div>
+                <div><img src="imgs/thumb04.jpg" alt="img04"></div>
+                <div><img src="imgs/thumb05.jpg" alt="img05"></div>
+                <div><img src="imgs/thumb06.jpg" alt="img06"></div>
+            </div>
+        </div>
+        <div class="content p2">
+            <div class="box">
+                <h2>INTRO PAGE</h2>
+                <p>인사말, 오시는 길, 안내...</p>
+            </div>
+        </div>
+        <div class="content p3">
+            <h2>DEPT LIST</h2>
+            <div class="table">
+                <div>
+                    <span>deptno</span>
+                    <span>dname</span>
+                    <span>loc</span>
+                </div>
+            </div>
+            <p><a class="btn" href="#">입력</a></p>
+        </div>
+        <div class="footer">
+            &copy; by bitacademy co.ltd. All rights reserved.
+        </div>
+    </div>
+    <div id="popup">
+        <div class="frame">
+            <div class="header">
+                <h2>입력페이지</h2>
+            </div>
+            <form></form>
+            <div class="content">
+                <form action="http://google.com">
+                    <div>
+                        <label for="deptno">deptno</label>
+                        <input type="number" name="deptno" id="deptno">
+                    </div>
+                    <div>
+                        <label for="dname">dname</label>
+                        <input type="text" name="dname" id="dname">
+                    </div>
+                    <div>
+                        <label for="loc">loc</label>
+                        <input type="text" name="loc" id="loc">
+                    </div>
+                </form>
+            </div>
+            <div class="footer">
+                <a href="#" class="btn">입력</a>
+                <a href="#" class="btn">닫기</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

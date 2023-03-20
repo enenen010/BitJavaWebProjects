@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    ul{
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        width: 600px;
+    }
+    ul>li{
+        float: left;
+    }
+
+    ul>li>img{
+        width: 100px;   
+    }
+    #carousel{
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+    }
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+
+   window.onload=function(){
+        setInterval(loop,3000);
+    }
+
+    function loop(){
+    $('ul').children().first().appendTo('ul');
+   }
+</script>
+</head>
+<body>
+    <h1>css</h1>
+    <div id="carousel">
+        <ul>
+            <li><img src="imgs/small01.png" alt=""></li>
+            <li><img src="imgs/small02.png" alt=""></li>
+            <li><img src="imgs/small03.png" alt=""></li>
+            <li><img src="imgs/small04.png" alt=""></li>
+            <li><img src="imgs/small05.png" alt=""></li>
+            <li><img src="imgs/small06.png" alt=""></li>
+        </ul>
+    </div>
+</body>
+</html>

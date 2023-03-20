@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript">
+    window.onclick=function(){
+        $('input').first().attr('type');
+        $('input').eq(1).attr('type');
+
+        //엘리먼트에 속성을 주는 법(인라인)
+        $('input').eq(0).attr('type','password');
+        $('input').eq(0).attr('readonly','readonly');
+        $(':checkbox').eq(0).attr('checked','checked');
+        $(':radio').eq(0).attr('checked','checked');
+        $('option').eq(0).attr('selected','selected');
+
+        //인라인으로 css처럼
+        $('option').eq(0).attr('style','color:red');
+
+        //.css() 는 위에껄 좀 쉽게 css 우선순위로 하는것
+
+        //주의점 
+        //<input readonly="readonly"> <input readonly> 둘다 같은 결과
+        //브라우저 종속: 밸류 안주면 안나오는게 있음
+        $('input').eq(0).attr('readonly');
+
+        //해결 얘를 쓰자(readonly 처럼 밸류 없는 attr할때 boolean으로 넣는법)
+        $('input').eq(0).prop('readonly',true);
+        //밸류를 js 형식으로 넣음 위에껀 'readonly' 이건 true
+
+        //밸류없는 대표적인 경우 value
+        $('input').eq(0).attr('readonly');//인라인에 없으면 못받아옴
+        $('input').eq(0).val();//이걸로
+
+        $('input').eq(0).attr('class','aaa');
+        $('input').eq(0).addClass('aaa');//이것도 가능하면 이거
+    }; 
+</script>
+
+</head>
+<body>
+        <!-- form>(div>label+input)*3+(div>(input+label)*3)*2+div>select>option*4 -->
+        <form action="">
+            <div><label></label><input type="text"></div>
+            <div><label></label><input type="text"></div>
+            <div><label></label><input type="text"></div>
+            <div>
+                <input type="radio" name="ra">
+                <label>item1</label>
+                <input type="radio" name="ra">
+                <label>item2</label>
+                <input type="radio" name="ra">
+                <label>item3</label>
+            </div>
+            <div>
+                <input type="checkbox">
+                <label>item4</label>
+                <input type="checkbox">
+                <label>item5</label>
+                <input type="checkbox">
+                <label>item6</label>
+            </div>
+            <div>
+                <select name="" id="">
+                    <option>item7</option>
+                    <option>item8</option>
+                    <option>item9</option>
+                    <option>item10</option>
+                </select>
+            </div>
+        </form>
+</body>
+</html>

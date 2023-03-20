@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js"></script>
+<script type="text/javascript" >
+    var cnt=1;
+    $(function(){
+        //on의 가장 권유되는 사용방식
+        $('button').on('click',function(){
+            console.log(this);
+        });
+        //대상 집단에 이벤트를 부여하는 개념, 특히 on은 이벤트 집단에도 가능
+        $('input').on('keydown keyup',function(){  
+            console.log(this);
+        });
+
+        //단 한번만 일어남
+        $('button').one('click',function(){
+            console.log(this);
+        });
+    })
+
+    //트리거
+    //.on(events[,select][,data],callback)  사실 모든 이벤트엔 data값이 있음
+    //data
+    $('button').trigger('click');
+    $('button').trigger('focus');
+
+
+</script>
+</head>
+<body>
+    <h1>이벤트 on</h1>
+    <div><input type="text"></div>
+<div><button>btn1</button></div>
+</body>
+</html>

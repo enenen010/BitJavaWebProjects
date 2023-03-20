@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+    /*
+    클로저 : 닫는다 뭘? 접근을
+    js는 private 같은거 없어서 보안성
+    그나마 방법이 함수내 지역변수는 접근 안된다는 거임
+    이를 활용하여 객체내 ele을 제한하여 접근하게 하기 위하여 사용하는 개념
+    */
+
+    //클로저 : 지역변수와 전역변수의 라이프사이클을 극복하는 것(지역변수가 전역변수처럼 사용가능해 지는 것)
+    //java의 비슷한 활용은 이너클래스 
+    //java에서 지역변수 스택임 전역처럼 쓴다는 것은 아래에 깔린 스택껄 꺼낸다는 건데 말도 안됐음
+    //클로저란 이름으로 언어까지 만들정도로 센세이션
+    var a={};
+    var m;
+
+    function func01(){
+        var a={"key1":"val1"};
+        m=200;
+
+        var c = function(val){
+            if(val)
+                // setter
+                a.key1=val;
+            else
+                // getter
+                return m;
+        }
+        return c;
+    }
+    window['m']
+    var b = func01();
+    b(4321);
+    console.log(b.a,b());
+    m=1000;
+    console.log(b.a,b());
+
+    console.log(func01());
+
+    //콜백 콜은 내가했는데 백은 내가안함
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

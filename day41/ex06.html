@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ex06</title>
+    <style rel="stylesheet" type="text/css">
+      .container {
+        width: 600px;
+        margin: 0px auto;
+      }
+      .container > #menu {
+        background-color: gray;
+        overflow: hidden;
+      }
+      .container > #menu > ul {
+        list-style: none;
+        display: flex;
+        width: 100%;
+        padding: 0px;
+        justify-content: center;
+        align-items: center;
+      }
+      .container > #menu > ul > li {
+        float: left;
+        width: 100px;
+      }
+      .container > #menu > ul > li > a {
+        display: block;
+        height: 25px;
+        color: white;
+        text-align: center;
+        line-height: 35px;
+        text-decoration: none;
+      }
+      .container > #menu > ul > li > a:hover {
+        text-decoration: overline;
+      }
+
+      .carousel {
+        margin: 0px auto;
+        overflow: hidden;
+      }
+      .carousel > ul {
+        width: 600px;
+        height: auto;
+        list-style: none;
+        padding: 0px;
+      }
+      .carousel > ul > li {
+        float: left;
+      }
+      .carousel > ul > li > img {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div id="header">
+        <h1>비트교육센터</h1>
+      </div>
+      <div id="menu">
+        <a href="#">menu</a>
+        <a href="#">menu</a>
+        <a href="#">menu</a>
+        <a href="#">menu</a>
+      </div>
+      <div id="content">
+        <div class="target">
+        </div>
+        <div id="carousel"></div>
+      </div>
+      <div id="footer">&copy; by bitacademy co.ltd.</div>
+    </div>
+
+    <script type="text/javascript">
+        var arr=[
+        '<img src="imgs/big01.jpg" />',
+        '<img src="imgs/thumb02.jpg" />',
+        '<img src="imgs/big03.jpg" />',
+        '<img src="imgs/thumb04.jpg" />',
+        '<img src="imgs/big05.jpg" />',
+        '<img src="imgs/big06.jpg" />'
+        ];
+        var carousel=document.getElementById('carousel');
+        cnt=0;
+        carousel.innerHTML='<img src="imgs/big01.jpg" />';
+        var loop=function(){
+            if(cnt==-2){
+                cnt=4;
+            }
+            cnt++;
+            if(cnt==6)cnt=0;
+            var img1=arr[cnt];
+            cnt++;
+            if(cnt==6)cnt=0;
+            var img2=arr[cnt];
+            cnt++;
+            if(cnt==6)cnt=0;
+            var img3=arr[cnt];
+            carousel.innerHTML=img1+img2+img3;
+            cnt--;
+            if(cnt--==-1)cnt=0;
+        }
+        setInterval(loop, 3000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;500;900&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style rel="stylesheet" type="text/css">
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        html {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        #header>h1{
+            width: 205px;
+            height: 42px;
+            text-indent: -9999px;
+            background-image: url("./imgs/logo.png");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        #menu, #footer{
+            background-color: gray;
+        }
+        #menu{
+            overflow: hidden;
+        }
+        #menu>ul{
+            list-style: none;
+            margin:0 auto;
+            width: 440px;
+        }
+        #menu>ul>li{
+            float: left;
+            width: 100px;
+            margin:0px 5px;
+            background-color: darkgray;
+        }
+        #menu>ul>li>a{
+            display: block;
+            height: 40px;
+            line-height: 40px;
+            text-decoration: none;
+            color:#fff;
+            text-align: center;
+        }
+        #menu>ul>li>a:hover{
+            background-color: orange;
+        }
+        #menu+div{
+            clear:both;
+        }
+        #content{
+            width: 100%;
+        }
+        #left_side{
+            width: 50%;
+            float:left;
+            padding:30px;
+        }
+        #left_side #article1 img{
+            width: 100%;
+            height: auto;
+        }
+        #aside1{
+            width: 50%;
+            float:right;
+            padding: 30px;
+            border-left: 1px solid #000;
+        }
+        #aside1>ul{
+            list-style: none;
+            margin:0 auto;
+        }
+        #aside1>ul>li{
+            /* float: left; */
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        #aside1>ul>li:not(:last-child){
+            margin-right: 20px;
+        }
+        #aside1>ul>li>a{
+            text-decoration: none;
+            color: #000;
+        }
+        #aside1>ul>li>a>img{
+            width: 100%;
+            height: auto;
+            max-width: 300px;
+            max-height: 100px;
+            margin:0 auto;
+        }
+        #footer{
+            clear: both;
+        }
+        #footer>p{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="header">
+        <h1>비트교육센터</h1>
+    </div>
+    <div id="menu">
+        <ul>
+            <li><a href="#!">menu1</a></li>
+            <li><a href="#!">menu2</a></li>
+            <li><a href="#!">menu3</a></li>
+            <li><a href="#!">menu4</a></li>
+        </ul>
+    </div>
+    <div id="content">
+        <div id="left_side">
+            <section id="section1">
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus quis odio ultrices, pulvinar elit nec,
+                    tincidunt dui. Mauris ultricies nisl eget quam rhoncus iaculis. Aliquam ut massa augue. Nulla nisi purus,
+                    rhoncus ut mattis ut, lacinia in leo. Morbi a lectus in est feugiat dictum. Ut luctus magna non ligula
+                    faucibus tempor. Aenean justo orci, tempus eu efficitur vel, imperdiet a lacus. Sed et cursus mi, a
+                    hendrerit leo.
+                </p>
+            </section>
+            <article id="article1">
+                <img src="./imgs/dora.png" alt="">
+            </article>
+        </div>
+        <aside id="aside1">
+            <ul>
+                <li><a href="#!"><img src="./imgs/google.png" alt=""></a></li>
+                <li><a href="#!"><img src="./imgs/naver.png" alt=""></a></li>
+                <li><a href="#!"><img src="./imgs/daum.png" alt=""></a></li>
+            </ul>
+        </aside>
+    </div>
+    <div id="footer">
+        <p>Copyright ⓒ DOUZONE BIZON. All rights reserved.</p>
+    </div>
+</body>
+
+</html>

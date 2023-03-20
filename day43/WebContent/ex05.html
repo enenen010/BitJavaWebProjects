@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css" rel="stylesheet">
+    ul{
+        list-style: none;
+        margin: 0px;
+        padding: 0px;
+        width: 1200px;
+    }
+    ul>li{
+        float: left;
+    }
+
+    ul>li>img{
+        width: 200px;   
+    }
+    #carousel{
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+    }
+</style>
+<script type="text/javascript" src="js/jquery-1.12.4.min.js">
+
+    //아까 그것도 어렵다해서 만든것들
+    $('h1').width();
+    $('h1').height();
+    $('h1').width(300);
+    $('h1').height(300);
+
+    //.css 어렵다고.. 이짓
+    window.onload=function(){
+        $('li').css('background-color','red')
+        .width(function(idx,val){
+            return 100+500*idx;
+        })
+    };
+
+    $('h1').innerWidth();
+    $('h1').innerHeight();//안쪽으로
+    $('h1').outerHeight();//border까지
+
+    //스크롤이 얼마만큼일때 이 동작을!
+    $('h1').scroll();
+    $('h1').scrollTop(100);//top에서 100만큼
+
+</script>
+</head>
+<body>
+    <h1>css</h1>
+    <div id="carousel">
+        <ul>
+            <li><img src="imgs/small01.png" alt=""></li>
+            <li><img src="imgs/small02.png" alt=""></li>
+            <li><img src="imgs/small03.png" alt=""></li>
+            <li><img src="imgs/small04.png" alt=""></li>
+            <li><img src="imgs/small05.png" alt=""></li>
+            <li><img src="imgs/small06.png" alt=""></li>
+        </ul>
+    </div>
+</body>
+</html>
