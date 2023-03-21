@@ -28,12 +28,13 @@ public class RootController {
 	public String ex01(HttpSession session,String id) throws Exception {
 		session.setAttribute("user", "admin");
 		session.setAttribute("sid", session.getId());
+		System.out.println("컨트롤러 실행");
 		return "ex01";
 	}
 	
 	@GetMapping("/ex02")
 	public String ex02(HttpSession session) throws IOException {
-		System.out.println("controller sessionID:"+session.getId());
+		System.out.println("2 controller sessionID:"+session.getId());
 		Map<String, WebSocketSession> list = null;
 		list=((EchoHandler)webSocketHandler).getList();
 		

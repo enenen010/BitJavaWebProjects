@@ -28,7 +28,6 @@ public class SocketConfig implements WebSocketConfigurer{
 		reg.addInterceptors(new HttpSessionHandshakeInterceptor());
 	}
 	
-
 }
 
 

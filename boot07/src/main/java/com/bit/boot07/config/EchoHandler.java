@@ -21,13 +21,13 @@ public class EchoHandler extends TextWebSocketHandler{
 	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		System.out.println("접속closed...");
+		System.out.println("3접속closed...");
 		list.remove(session.getAttributes().get("sid"));
 	}
 	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		System.out.println("websocket sessionID:"+session.getId());
+		System.out.println("1소켓 커넥트 websocket sessionID:"+session.getId());
 //		for(Entry<String, Object> entry:session.getAttributes().entrySet()) {
 //			System.out.println(entry.getKey()+":"+entry.getValue());
 //		}
@@ -38,21 +38,8 @@ public class EchoHandler extends TextWebSocketHandler{
 	@Override
 	public void handleMessage(WebSocketSession session, WebSocketMessage<?> message) throws Exception {
 		System.out.println("메시지 수신..."+message);
+		System.out.println("========================================");
 		for(WebSocketSession sock:list.values())sock.sendMessage(message);
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
